@@ -3,7 +3,7 @@
     Created on : 17/03/2021, 12:22:28 PM
     Author     : melvi
 --%>
-<%@page import="uts.isd.model.User"%>
+<%@page import="uts.isd.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,11 +13,11 @@
     </head>
     <body>
         <%
-            User user = (User)session.getAttribute("user");
-        %> <!--Fetch stored User class, previously created in welcome.jsp-->
+            User user = (User) session.getAttribute("user");
+        %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
-            <a href="logout.jsp">logout</a>
+            <a href="LogoutServlet">logout</a>
             <a href="main.jsp">main</a>
         </div>
         <div>
@@ -36,7 +36,7 @@
                     <td>Password</td><td>${user.password}</td>
                 </tr>
             </table>
-                <form action="edit.jsp">
+            <form action="EditServlet">
                 <input type="submit" value="Edit">
             </form>
         </div>

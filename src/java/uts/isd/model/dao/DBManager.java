@@ -21,18 +21,49 @@ public class DBManager {
         st = conn.createStatement();
     }
 
-//Find user by email and password in the database   
-    public User findUser(int ID, String email) throws SQLException {
-        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE ID = " + ID + " AND EMAIL = '" + email + "'";
+    public User findUserByID(int ID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE ID = " + ID;
         ResultSet rs = st.executeQuery(fetch);
 
         while (rs.next()) {
             int userID = Integer.parseInt(rs.getString(1));
+            if (userID == ID) {
+                String userName = rs.getString(2);
+                String userEmail = rs.getString(3);
+                String userPh = rs.getString(4);
+                String userPw = rs.getString(5);
+                return new User(userName, userEmail, userPh, userPw);
+            }
+        }
+        return null;
+    }
+    
+    public User findUserByEmail(String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE EMAIL = '" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
             String userEmail = rs.getString(3);
-            if (userID == ID && userEmail.equals(email)) {
+            if (userEmail.equals(email)) {
                 String userName = rs.getString(2);
                 String userPh = rs.getString(4);
                 String userPw = rs.getString(5);
+                return new User(userName, userEmail, userPh, userPw);
+            }
+        }
+        return null;
+    }
+    
+    public User authenticateUser(String email, String password) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE EMAIL = '" + email + "' AND PASSWORD = '" + password + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String userEmail = rs.getString(3);
+            String userPw = rs.getString(5);
+            if (userEmail.equalsIgnoreCase(email) && userPw.equals(password)) {
+                String userName = rs.getString(2);
+                String userPh = rs.getString(4);
                 return new User(userName, userEmail, userPh, userPw);
             }
         }

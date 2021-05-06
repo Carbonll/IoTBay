@@ -91,12 +91,13 @@ public class TestDB {
 
     private void testRead() {
         System.out.print("Please enter the following:");
-        System.out.println("User ID: ");
-        int ID = Integer.parseInt(in.nextLine());
-        System.out.print("Email: ");
+        System.out.println("User email: ");
         String email = in.nextLine();
+        System.out.println("User passowrd: ");
+        String password = in.nextLine();
+        
         try {
-            User user = db.findUser(ID, email);
+            User user = db.authenticateUser(email, password);
             if (user != null) {
                 System.out.println("User " + user.getName() + " exists within the database.");
             } else {
@@ -148,11 +149,9 @@ public class TestDB {
         System.out.print("Please enter the user to update:");
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
 
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 System.out.print("New username: ");
                 String newName = in.nextLine();
                 db.updateName(ID, newName);
@@ -169,11 +168,9 @@ public class TestDB {
         System.out.print("Please enter the user to update:");
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
 
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 System.out.print("New email: ");
                 String newEmail = in.nextLine();
                 db.updateEmail(ID, newEmail);
@@ -190,11 +187,9 @@ public class TestDB {
         System.out.print("Please enter the user to update:");
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
 
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 System.out.print("New phone: ");
                 String newPhone = in.nextLine();
                 db.updatePhone(ID, newPhone);
@@ -211,11 +206,9 @@ public class TestDB {
         System.out.print("Please enter the user to update:");
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
-
+        
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 System.out.print("New password: ");
                 String newPw = in.nextLine();
                 db.updatePassword(ID, newPw);
@@ -232,11 +225,9 @@ public class TestDB {
         System.out.print("Please enter the user to update:");
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
 
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 System.out.print("New username: ");
                 String newName = in.nextLine();
                 System.out.print("New email: ");
@@ -260,11 +251,9 @@ public class TestDB {
         testShowAll();
         System.out.println("User ID: ");
         int ID = Integer.parseInt(in.nextLine());
-        System.out.println("Email: ");
-        String email = in.nextLine();
 
         try {
-            if (db.findUser(ID, email) != null) {
+            if (db.findUserByID(ID) != null) {
                 db.deleteUser(ID);
                 System.out.println("User successfully deleted.");
             } else {

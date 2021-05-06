@@ -4,6 +4,10 @@
     Author     : melvi
 --%>
 
+<%@page import="uts.isd.model.*"%>
+
+<%@page import="uts.isd.controller.*"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,5 +25,6 @@
             <h2>Welcome to the IoTBay online store!</h2>
             <p>Lorem Ipsum</p>
         </div>
+        <jsp:include page="/ConnServlet" flush="true" />
     </body>
 </html>
