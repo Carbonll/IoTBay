@@ -1,6 +1,8 @@
 # IoTBay
 UTS Group Assignment, online web application.
 
+# STATUS: PLEASE DO NOT CREATE YOUR OWN BRANCH YET, STILL WORKING ON STAFF LOGIN. WILL BE DONE DURING 8/05 HOPEFULLY
+
 # Notes
 
 Create your own branch for the feature you're working on, derived from the master branch. Use this as your repository to push and pull your progress.
