@@ -1,6 +1,8 @@
 # IoTBay
 UTS Group Assignment, online web application.
 
+Create your own branch for the feature you're working on, derived from the master branch. 
+
 Create your DAO methods in uts/isd/model/dao/DBManager.java, e.g. findUser, findProduct, etc.
 
 When adding your controller/servlet classes, don't forget to declare them in the web.xml file in WEB-INF folder as well, otherwise they wont work.
