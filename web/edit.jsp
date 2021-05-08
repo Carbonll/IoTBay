@@ -15,7 +15,7 @@
     <body>
         <%
             User user = (User) session.getAttribute("user");
-            String updated = request.getParameter("updated");
+            String updated = (String) session.getAttribute("updated");
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>

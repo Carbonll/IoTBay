@@ -31,8 +31,9 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
+        String code = request.getParameter("code");
         DBManager manager = (DBManager) session.getAttribute("manager");
-        User user = null;
+        User check = null;
 
         if (!validator.validateName(name)) {
             session.setAttribute("nameErr", "Invalid Name Format");
@@ -48,12 +49,24 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("register.jsp").include(request, response);
         } else {
             try {
-                user = manager.findUserByEmail(email);
-                if (user == null) {
-                    manager.addUser(name, email, phone, password);
-                    user = new User(name, email, phone, password);
-                    session.setAttribute("user", user);
-                    request.getRequestDispatcher("main.jsp").include(request, response);
+                check = manager.findUserByEmail(email); 
+                if (check == null) { //check if the inputted email already exists
+                    if (code.isEmpty()) { //if user didnt attempt to input staff code, register as customer
+                        manager.addUser(name, email, phone, password, 3);
+                        User user = manager.findUserByEmail(email);
+                        session.setAttribute("user", user);
+                        request.getRequestDispatcher("main.jsp").include(request, response);
+                    } else { //user has attempted to input staff code
+                        if (validator.validateCode(code)) { //if staff code is correct, register as staff
+                            manager.addUser(name, email, phone, password, 2);
+                            User user = manager.findUserByEmail(email);
+                            session.setAttribute("user", user);
+                            request.getRequestDispatcher("main.jsp").include(request, response);
+                        } else {
+                            session.setAttribute("codeErr", "Incorrect Code");
+                            request.getRequestDispatcher("register.jsp").include(request, response);
+                        }
+                    }
                 } else {
                     session.setAttribute("existErr", "Email is already in use");
                     request.getRequestDispatcher("register.jsp").include(request, response);

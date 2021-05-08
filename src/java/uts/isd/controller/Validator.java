@@ -20,6 +20,7 @@ public class Validator implements Serializable {
     private String namePattern = "[a-zA-Z0-9]{3,}";
     private String passwordPattern = "^[a-zA-Z0-9!@#$&]{4,}";
     private String phonePattern = "([0]{1}[4]{1}[0-9]{8})*";
+    private String codePattern = "1234*"; //staff registration code
 
     public Validator() {}
 
@@ -49,11 +50,18 @@ public class Validator implements Serializable {
         return validate(phonePattern, phone);
     }
     
+    public boolean validateCode(String code) {
+        return validate(codePattern, code);
+    }
+    
     public void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email");
         session.setAttribute("passErr", "Enter Password");
         session.setAttribute("existErr", "");
         session.setAttribute("nameErr", "Enter Name");
         session.setAttribute("phoneErr", "Enter Phone");
+    }
+    public void clearCode(HttpSession session) {
+        session.setAttribute("codeErr", "Enter Code");
     }
 }

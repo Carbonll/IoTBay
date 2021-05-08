@@ -82,7 +82,7 @@ public class TestDB {
         String password = in.nextLine();
 
         try {
-            db.addUser(name, email, phone, password);
+            db.addUser(name, email, phone, password, 3);
         } catch (SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -136,9 +136,9 @@ public class TestDB {
                 case '4':
                     updatePassword();
                     break;
-                case '5':
-                    updateAll();
-                    break;
+//                case '5':
+//                    updateAll();
+//                    break;
                 default:
                     System.out.println("Invalid command!");
             }
@@ -221,30 +221,30 @@ public class TestDB {
         }
     }
 
-    private void updateAll() {
-        System.out.print("Please enter the user to update:");
-        System.out.println("User ID: ");
-        int ID = Integer.parseInt(in.nextLine());
-
-        try {
-            if (db.findUserByID(ID) != null) {
-                System.out.print("New username: ");
-                String newName = in.nextLine();
-                System.out.print("New email: ");
-                String newEmail = in.nextLine();
-                System.out.print("New phone: ");
-                String newPhone = in.nextLine();
-                System.out.print("New password: ");
-                String newPw = in.nextLine();
-                db.updateUser(ID, newName, newEmail, newPhone, newPw);
-                System.out.println("User successfully updated.");
-            } else {
-                System.out.println("User does not exist within the database.");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void updateAll() {
+//        System.out.print("Please enter the user to update:");
+//        System.out.println("User ID: ");
+//        int ID = Integer.parseInt(in.nextLine());
+//
+//        try {
+//            if (db.findUserByID(ID) != null) {
+//                System.out.print("New username: ");
+//                String newName = in.nextLine();
+//                System.out.print("New email: ");
+//                String newEmail = in.nextLine();
+//                System.out.print("New phone: ");
+//                String newPhone = in.nextLine();
+//                System.out.print("New password: ");
+//                String newPw = in.nextLine();
+//                db.updateUser(ID, newName, newEmail, newPhone, newPw);
+//                System.out.println("User successfully updated.");
+//            } else {
+//                System.out.println("User does not exist within the database.");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     private void testDelete() {
         System.out.print("Please enter the user to delete:");

@@ -18,6 +18,7 @@
         String passErr = (String) session.getAttribute("passErr");
         String nameErr = (String) session.getAttribute("nameErr");
         String phoneErr = (String) session.getAttribute("phoneErr");
+        String codeErr = (String) session.getAttribute("codeErr");
     %>
     <body>
         <div>
@@ -43,6 +44,10 @@
                     <tr>
                         <td>Password</td>
                         <td><input type="text" placeholder="<%= passErr != null ? passErr : "Enter Password"%>" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td>Staff Code</td>
+                        <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td>
                     </tr>
                 </table>
                 <input type="submit" value="sign up">

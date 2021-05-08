@@ -32,7 +32,7 @@ public class DBManager {
                 String userEmail = rs.getString(3);
                 String userPh = rs.getString(4);
                 String userPw = rs.getString(5);
-                return new User(userName, userEmail, userPh, userPw);
+                return new User(ID, userName, userEmail, userPh, userPw);
             }
         }
         return null;
@@ -45,10 +45,11 @@ public class DBManager {
         while (rs.next()) {
             String userEmail = rs.getString(3);
             if (userEmail.equals(email)) {
+                int ID = Integer.parseInt(rs.getString(1));
                 String userName = rs.getString(2);
                 String userPh = rs.getString(4);
                 String userPw = rs.getString(5);
-                return new User(userName, userEmail, userPh, userPw);
+                return new User(ID, userName, userEmail, userPh, userPw);
             }
         }
         return null;
@@ -62,26 +63,28 @@ public class DBManager {
             String userEmail = rs.getString(3);
             String userPw = rs.getString(5);
             if (userEmail.equalsIgnoreCase(email) && userPw.equals(password)) {
+                int ID = Integer.parseInt(rs.getString(1));
                 String userName = rs.getString(2);
                 String userPh = rs.getString(4);
-                return new User(userName, userEmail, userPh, userPw);
+                return new User(ID, userName, userEmail, userPh, userPw);
             }
         }
         return null;
     }
 
 //Add a user-data into the database   
-    public void addUser(String name, String email, String phone, String password) throws SQLException {
-        st.executeUpdate("INSERT INTO IOTUSER.\"USER\"(\"NAME\", EMAIL, PHONE, PASSWORD)" + "VALUES ('" + name + "', '" + email + "', '" + phone + "', '" + password + "')");
+    public void addUser(String name, String email, String phone, String password, int roleID) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTUSER.\"USER\"(\"NAME\", EMAIL, PHONE, PASSWORD, ROLE_ID)" + "VALUES ('" + name + "', '" + email + "', '" + phone + "', '" + password + "', " + roleID + ")");
     }
 
 //update a user details in the database   
-    public void updateUser(int ID, String name, String email, String phone, String password) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"USER\" SET NAME = '" + name + "', '" + email + "', '" + phone + "', '" + password + "' WHERE ID = " + ID);
-    }
+//    public void updateUser(int ID, String name, String email, String phone, String password) throws SQLException {
+//        st.executeUpdate("UPDATE IOTUSER.\"USER\" SET \"NAME\" = '" + name + "', EMAIL = '" + email + "', PHONE '" + phone + "', PASSWORD '" + password + "' WHERE ID = " + ID);
+//    }
 
     public void updateName(int ID, String name) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"USER\" SET NAME = '" + name + "' WHERE ID = " + ID);
+        st.executeUpdate("UPDATE IOTUSER.\"USER\" SET \"NAME\" = '" + name + "' WHERE ID = " + ID);
+        System.out.println("Updated " + name + " of ID " + ID);
     }
 
     public void updateEmail(int ID, String email) throws SQLException {
