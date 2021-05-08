@@ -15,11 +15,11 @@ SQL statements for table creation/insertion can be found/should be done in db/ta
 
 ## Other
 
-Create your DAO methods in srs/uts/isd/model/dao/DBManager.java, e.g. findUser, findProduct, etc.
+Create your DAO methods in srs/uts/isd/model/dao/DBManager.java, e.g. findUser, findProduct, etc. Add Servlet classes in srs/uts/isd/controller, e.g. loginServlet, registerServlet, etc.
 
 When adding your servlet classes, don't forget to declare them in the web.xml file in WEB-INF folder as well, otherwise they wont work.
 
-Make sure to run the application through index.jsp, as that is the page that declares ConnServlet to allow for all controllers/servlets to work.
+Make sure to run the application through index.jsp, as that is the page that declares ConnServlet to allow for all the controllers/servlets to work.
 
 # Creating a repository in Netbeans
 
