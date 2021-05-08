@@ -15,7 +15,6 @@ INSERT INTO IOTUSER.ROLE
     (2, 'Staff'),
     (3, 'Customer');
 
-INSERT INTO IOTUSER."USER" 
-    ("NAME", EMAIL, PASSWORD, ROLE_ID) VALUES
-    ('admin', 'admin@iotbay.com', 'admin', 1);
-
+ INSERT INTO IOTUSER."USER" 
+     ("NAME", EMAIL, PASSWORD, ROLE_ID) VALUES
+     ('admin', 'admin@iotbay.com', 'admin', 1);
