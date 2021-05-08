@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.User;
 import uts.isd.model.dao.DBManager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+
 /**
  *
  * @author melvi
@@ -49,17 +54,21 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("register.jsp").include(request, response);
         } else {
             try {
-                check = manager.findUserByEmail(email); 
+                check = manager.findUserByEmail(email);
                 if (check == null) { //check if the inputted email already exists
                     if (code.isEmpty()) { //if user didnt attempt to input staff code, register as customer
                         manager.addUser(name, email, phone, password, 3);
                         User user = manager.findUserByEmail(email);
+                        Date date = Calendar.getInstance().getTime();
+                        manager.addAudit(user.getID(), "Register", date);
                         session.setAttribute("user", user);
                         request.getRequestDispatcher("main.jsp").include(request, response);
                     } else { //user has attempted to input staff code
                         if (validator.validateCode(code)) { //if staff code is correct, register as staff
                             manager.addUser(name, email, phone, password, 2);
                             User user = manager.findUserByEmail(email);
+                            Date date = Calendar.getInstance().getTime();
+                            manager.addAudit(user.getID(), "Register", date);
                             session.setAttribute("user", user);
                             request.getRequestDispatcher("main.jsp").include(request, response);
                         } else {

@@ -8,6 +8,9 @@ package uts.isd.model.dao;
 import uts.isd.model.User;
 import java.sql.*;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -21,32 +24,7 @@ public class DBManager {
         st = conn.createStatement();
     }
 
-    public User findUserByID(int ID) throws SQLException {
-        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE ID = " + ID;
-        ResultSet rs = st.executeQuery(fetch);
-
-        while (rs.next()) {
-            int userID = rs.getInt(1);
-            if (userID == ID) {
-                return new User(rs);
-            }
-        }
-        return null;
-    }
-    
-    public User findUserByEmail(String email) throws SQLException {
-        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE EMAIL = '" + email + "'";
-        ResultSet rs = st.executeQuery(fetch);
-
-        while (rs.next()) {
-            String userEmail = rs.getString(3);
-            if (userEmail.equals(email)) {
-                return new User(rs);
-            }
-        }
-        return null;
-    }
-    
+    //USER DAO METHODS
     public User authenticateUser(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE EMAIL = '" + email + "' AND PASSWORD = '" + password + "'";
         ResultSet rs = st.executeQuery(fetch);
@@ -60,7 +38,7 @@ public class DBManager {
         }
         return null;
     }
- 
+
     public void addUser(String name, String email, String phone, String password, int roleID) throws SQLException {
         st.executeUpdate("INSERT INTO IOTUSER.\"USER\"(\"NAME\", EMAIL, PHONE, PASSWORD, ROLE_ID)" + "VALUES ('" + name + "', '" + email + "', '" + phone + "', '" + password + "', " + roleID + ")");
     }
@@ -86,6 +64,32 @@ public class DBManager {
         st.executeUpdate("DELETE FROM IOTUSER.\"USER\" WHERE ID = " + ID);
     }
 
+    public User findUserByID(int ID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE ID = " + ID;
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            int userID = rs.getInt(1);
+            if (userID == ID) {
+                return new User(rs);
+            }
+        }
+        return null;
+    }
+
+    public User findUserByEmail(String email) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE EMAIL = '" + email + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String userEmail = rs.getString(3);
+            if (userEmail.equals(email)) {
+                return new User(rs);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.\"USER\"";
         ResultSet rs = st.executeQuery(fetch);
@@ -95,5 +99,12 @@ public class DBManager {
             result.add(new User(rs));
         }
         return result;
+    }
+
+    //AUDIT LOG DAO METHODS
+    public void addAudit(int userID, String event, Date date) throws SQLException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        st.executeUpdate("INSERT INTO IOTUSER.AUDITS (USER_ID, AUDIT_EVENT, AUDIT_DATE)" + "VALUES (" + userID + ", '" + event + "', '" + strDate + "')");
     }
 }

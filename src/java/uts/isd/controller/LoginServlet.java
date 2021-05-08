@@ -7,6 +7,10 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -42,6 +46,8 @@ public class LoginServlet extends HttpServlet {
             try {
                 user = manager.authenticateUser(email, password);
                 if (user != null) {
+                    Date date = Calendar.getInstance().getTime();
+                    manager.addAudit(user.getID(), "Login", date);
                     session.setAttribute("user", user);
                     request.getRequestDispatcher("main.jsp").include(request, response);
                 } else {

@@ -27,16 +27,18 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
+        
         int ID = Integer.parseInt(request.getParameter("ID"));
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
+        
         User user = new User(ID, name, email, phone, password);
         DBManager manager = (DBManager) session.getAttribute("manager");
-        session.setAttribute("updated", "");
+        session.setAttribute("updated", ""); //clear any error messages
 
-        if (!validator.validateName(name)) {
+        if (!validator.validateName(name)) { //validate format for all fields
             session.setAttribute("updated", "Invalid Name Format");
             request.getRequestDispatcher("edit.jsp").include(request, response);
         } else if (!validator.validateEmail(email)) {
@@ -58,7 +60,6 @@ public class UpdateServlet extends HttpServlet {
                     manager.updatePhone(ID, phone);
                     manager.updatePassword(ID, password);
                     session.setAttribute("updated", "Details successfully updated.");
-                    System.out.println("Updated User");
                     request.getRequestDispatcher("edit.jsp").include(request, response);
                 } else {
                     session.setAttribute("updated", "Email is already in use");
