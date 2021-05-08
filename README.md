@@ -21,9 +21,19 @@ When adding your servlet classes, don't forget to declare them in the web.xml fi
 
 Make sure to run the application through index.jsp, as that is the page that declares ConnServlet to allow for all the controllers/servlets to work.
 
-# Creating a repository in Netbeans
+# Creating a local repository in Netbeans
 
 Create your branch on the github site first
 
 Check out this video on using GitHub directly within Netbeans: 
 https://www.youtube.com/watch?v=rs3QSq5hNf4
+
+## Github in a nutshell:
+
+Local repository: in this case, your netbeans project folder (see video above).
+Remote repository: this place you're looking at
+
+You push and pull your progress to and from your branch
+
+Pull: downloads any new files from a selected branch to your local repository
+Push: uploads any new files not yet in the selected branch from your local repository
