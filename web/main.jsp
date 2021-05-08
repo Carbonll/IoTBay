@@ -20,7 +20,7 @@
             <a href="LogoutServlet">logout</a>
             <a href="main.jsp">main</a>
             <a href="EditServlet">account</a>
-            <a href="AuditServlet">audit log</a>
+            <a href="AuditServlet">access log</a>
         </div>
         <br>
         <div>

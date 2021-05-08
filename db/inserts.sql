@@ -19,3 +19,9 @@
 --     (2, 'Staff'),
 --     (3, 'Customer');
 
+-- DELETE FROM IOTUSER.AUDITS;
+-- DELETE FROM IOTUSER."USER";
+
+INSERT INTO IOTUSER.AUDITS
+    (USER_ID, AUDIT_EVENT, AUDIT_DATE) VALUES
+    (100022, 'Test', '01-01-2021 test');

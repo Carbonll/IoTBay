@@ -31,6 +31,10 @@
         <servlet-name>UpdateServlet</servlet-name>
         <servlet-class>uts.isd.controller.UpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuditServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AuditServlet</servlet-class>
+    </servlet>
     
     <!-- insert servlet mapping stuff here -->
     <servlet-mapping>
@@ -57,7 +61,12 @@
         <servlet-name>UpdateServlet</servlet-name>
         <url-pattern>/UpdateServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuditServlet</servlet-name>
+        <url-pattern>/AuditServlet</url-pattern>
+    </servlet-mapping>
     
+    <!-- yo whats up -->
     <session-config>
         <session-timeout>
             30

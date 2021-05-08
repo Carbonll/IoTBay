@@ -32,13 +32,14 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Validator validator = new Validator();
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String code = request.getParameter("code");
+        
         DBManager manager = (DBManager) session.getAttribute("manager");
-        User check = null;
 
         if (!validator.validateName(name)) {
             session.setAttribute("nameErr", "Invalid Name Format");
@@ -54,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("register.jsp").include(request, response);
         } else {
             try {
-                check = manager.findUserByEmail(email);
+                User check = manager.findUserByEmail(email);
                 if (check == null) { //check if the inputted email already exists
                     if (code.isEmpty()) { //if user didnt attempt to input staff code, register as customer
                         manager.addUser(name, email, phone, password, 3);

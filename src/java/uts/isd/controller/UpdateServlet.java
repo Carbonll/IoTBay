@@ -34,7 +34,6 @@ public class UpdateServlet extends HttpServlet {
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         
-        User user = new User(ID, name, email, phone, password);
         DBManager manager = (DBManager) session.getAttribute("manager");
         session.setAttribute("updated", ""); //clear any error messages
 
@@ -54,11 +53,12 @@ public class UpdateServlet extends HttpServlet {
             try {
                 User check = manager.findUserByEmail(email);
                 if (check == null || check.getEmail().equals(email)) {
-                    session.setAttribute("user", user);
                     manager.updateName(ID, name);
                     manager.updateEmail(ID, email);
                     manager.updatePhone(ID, phone);
                     manager.updatePassword(ID, password);
+                    User user = manager.findUserByID(ID);
+                    session.setAttribute("user", user);
                     session.setAttribute("updated", "Details successfully updated.");
                     request.getRequestDispatcher("edit.jsp").include(request, response);
                 } else {

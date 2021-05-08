@@ -6,9 +6,6 @@
 package uts.isd.model;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import java.io.Serializable;
 
 /**
@@ -26,13 +23,6 @@ public class User implements Serializable {
     private int paymentID;
     private int shipmentID;
 
-    public User(String name, String email, String phone, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-    }
-
     public User(int ID, String name, String email, String phone, String password) {
         this.ID = ID;
         this.name = name;
@@ -41,7 +31,7 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public User(ResultSet rs) { //uses an sql result set's rows to fill in attributes
+    public User(ResultSet rs) { //uses an sql result set's rows to fill in User attributes
         try {
             this.ID = rs.getInt(1);
             this.name = rs.getString(2);
@@ -74,7 +64,7 @@ public class User implements Serializable {
 
     public String getName() {
         if (name == null) {
-            return ""; //Returns an empty string instead of null, if a variable is null. Useful so that an optional field, e.g. phone, doesn't display null
+            return "";
         }
         return name;
     }

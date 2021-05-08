@@ -56,7 +56,9 @@
 --     PRIMARY KEY(ID)
 -- );
 
+-- FOREIGN KEY DELCARATIONS BELOW
 -- note: execute one semicolon line at a time
+
 -- ALTER TABLE "USER" 
 --     ADD ROLE_ID INTEGER;
 --     ADD FOREIGN KEY (ROLE_ID) REFERENCES ROLE(ID);

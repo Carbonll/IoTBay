@@ -5,7 +5,7 @@
  */
 package uts.isd.model.dao;
 
-import uts.isd.model.User;
+import uts.isd.model.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.text.DateFormat;
@@ -103,8 +103,41 @@ public class DBManager {
 
     //AUDIT LOG DAO METHODS
     public void addAudit(int userID, String event, Date date) throws SQLException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         String strDate = dateFormat.format(date);
         st.executeUpdate("INSERT INTO IOTUSER.AUDITS (USER_ID, AUDIT_EVENT, AUDIT_DATE)" + "VALUES (" + userID + ", '" + event + "', '" + strDate + "')");
+    }
+    
+    public ArrayList<Audit> fetchAudits() throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.AUDITS";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Audit> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Audit(rs));
+        }
+        return result;
+    }
+    
+    public ArrayList<Audit> fetchAuditsByUserID(int userID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.AUDITS WHERE USER_ID = " + userID;
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Audit> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Audit(rs));
+        }
+        return result;
+    }
+    
+    public ArrayList<Audit> fetchAuditsByDate(int userID, String date) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.AUDITS WHERE USER_ID = " + userID + " AND AUDIT_DATE LIKE '%" + date + "%'";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Audit> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Audit(rs));
+        }
+        return result;
     }
 }
