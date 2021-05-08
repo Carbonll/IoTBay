@@ -31,9 +31,11 @@ https://www.youtube.com/watch?v=rs3QSq5hNf4
 ## Github in a nutshell:
 
 Local repository: in this case, your netbeans project folder (see video above).
-Remote repository: this place you're looking at
+
+Remote repository: this place right here. Branches are found here
 
 You push and pull your progress to and from your branch
 
 Pull: downloads any new files from a selected branch to your local repository
+
 Push: uploads any new files not yet in the selected branch from your local repository
