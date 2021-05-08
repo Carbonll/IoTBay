@@ -17,6 +17,7 @@
 --     PRIMARY KEY(ID)
 -- );
 
+-- note: execute inserts.sql to insert roles
 -- CREATE TABLE ROLE (
 --     ID INTEGER NOT NULL,
 --     ROLE_NAME VARCHAR(255) NOT NULL,
