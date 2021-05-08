@@ -11,7 +11,7 @@ Create your own branch for the feature you're working on, derived from the maste
 
 Make sure the database credentials are the same as the ones found in uts/isd/model/dao/DB.java
 
-SQL statements for table creation/insertion can be found/should be done in db/tables.sql and db/inserts.sql respectively. Reserve these files for those actions only. Important to comment out queries once they've been successfully executed once.
+SQL statements for table creation/insertion can be found/should be done in db/tables.sql and db/inserts.sql respectively. Please rserve these files for those actions only. Important to comment out queries once they've been successfully executed once.
 
 ## Other
 
