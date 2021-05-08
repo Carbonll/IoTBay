@@ -5,7 +5,7 @@ UTS Group Assignment, online web application.
 
 # Notes
 
-Create your own branch for the feature you're working on, derived from the master branch. Use this as your repository to push and pull your progress.
+Create your own branch for the feature you're working on, derived from the master branch. Use this as your repository to push and pull your progress. (see video link below on how)
 
 ## Initializing the database/tables:
 
