@@ -5,6 +5,10 @@
  */
 package uts.isd.model;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.io.Serializable;
 
 /**
@@ -18,6 +22,9 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String phone;
+    private int roleID;
+    private int paymentID;
+    private int shipmentID;
 
     public User(String name, String email, String phone, String password) {
         this.name = name;
@@ -25,7 +32,7 @@ public class User implements Serializable {
         this.password = password;
         this.phone = phone;
     }
-    
+
     public User(int ID, String name, String email, String phone, String password) {
         this.ID = ID;
         this.name = name;
@@ -34,15 +41,35 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public void updateInfo(String name, String email, String phone, String password) {
-        setName(name);
-        setEmail(email);
-        setPassword(password);
-        setPhone(phone);
+    public User(ResultSet rs) { //uses an sql result set's rows to fill in attributes
+        try {
+            this.ID = rs.getInt(1);
+            this.name = rs.getString(2);
+            this.email = rs.getString(3);
+            this.phone = rs.getString(4);
+            this.password = rs.getString(5);
+            this.roleID = rs.getInt(6);
+            this.paymentID = rs.getInt(7);
+            this.shipmentID = rs.getInt(8);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage() == null ? "Unable to load user" : "New user object created");
+        }
     }
 
     public int getID() {
         return ID;
+    }
+    
+    public int getRoleID() {
+        return roleID;
+    }
+    
+    public int getPaymentID() {
+        return paymentID;
+    }
+    
+    public int getShipmentID() {
+        return shipmentID;
     }
 
     public String getName() {

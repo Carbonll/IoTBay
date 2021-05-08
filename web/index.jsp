@@ -21,6 +21,7 @@
             <a href="login.jsp">login</a>
             <a href="register.jsp">register</a>
         </div>
+        <br>
         <div>
             <h2>Welcome to the IoTBay online store!</h2>
             <p>Lorem Ipsum</p>

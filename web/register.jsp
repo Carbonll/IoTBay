@@ -26,6 +26,7 @@
             <a href="login.jsp">login</a>
             <a href="register.jsp">register</a>
         </div>
+        <br>
         <div>
             <form action=RegisterServlet method="post">
                 <table>

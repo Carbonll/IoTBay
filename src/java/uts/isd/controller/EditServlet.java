@@ -29,6 +29,7 @@ public class EditServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         DBManager manager = (DBManager) session.getAttribute("manager");
+        session.setAttribute("updated", "");
         User user = null;
 
         try {
@@ -41,8 +42,7 @@ public class EditServlet extends HttpServlet {
                 request.getRequestDispatcher("edit.jsp").include(request, response);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+            System.out.println(ex.getMessage() == null ? "Unable to edit" : "Navigated to edit page successfully");
         }
     }
 }

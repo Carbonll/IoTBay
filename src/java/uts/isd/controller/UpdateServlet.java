@@ -34,6 +34,7 @@ public class UpdateServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         User user = new User(ID, name, email, phone, password);
         DBManager manager = (DBManager) session.getAttribute("manager");
+        session.setAttribute("updated", "");
 
         if (!validator.validateName(name)) {
             session.setAttribute("updated", "Invalid Name Format");
@@ -64,8 +65,7 @@ public class UpdateServlet extends HttpServlet {
                     request.getRequestDispatcher("edit.jsp").include(request, response);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getErrorCode() + " and " + ex.getMessage());
+                System.out.println(ex.getMessage() == null ? "Unable to update user" : "User updated");
             }
             response.sendRedirect("edit.jsp");
         }

@@ -19,26 +19,12 @@
             <h1><a href="main.jsp">IoTBay</a></h1>
             <a href="LogoutServlet">logout</a>
             <a href="main.jsp">main</a>
+            <a href="EditServlet">account</a>
+            <a href="AuditServlet">audit log</a>
         </div>
+        <br>
         <div>
-            <h2>Your current details:</h2>
-            <table>
-                <tr>
-                    <td>Name</td><td>${user.name}</td>
-                </tr>
-                <tr>
-                    <td>Email</td><td>${user.email}</td>
-                </tr>
-                <tr>
-                    <td>Phone</td><td>${user.phone}</td>
-                </tr>
-                <tr>
-                    <td>Password</td><td>${user.password}</td>
-                </tr>
-            </table>
-            <form action="EditServlet">
-                <input type="submit" value="Edit">
-            </form>
+            <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
         </div>
     </body>
 </html>

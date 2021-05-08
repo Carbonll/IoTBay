@@ -23,6 +23,9 @@
             <h1><a href="index.jsp">IoTBay</a></h1>
             <a href="login.jsp">login</a>
             <a href="register.jsp">register</a>
+        </div>
+        <br>
+        <div>
             <form action ="LoginServlet" method ="post">
                 <table>
                     <tr>
@@ -38,5 +41,6 @@
             </form>
             <p><%= existErr != null ? existErr : ""%></p>
         </div>
+
     </body>
 </html>
