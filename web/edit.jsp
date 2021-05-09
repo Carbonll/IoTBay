@@ -43,8 +43,8 @@
                         <td>Password</td><td><input type="text" name="password" value="${user.password}" required></td>
                     </tr>
                 </table>
-                <p>Please edit the fields above to any information.</p>
-                <input type="submit" value="update">
+                <p>Please edit the fields above to update any information.</p>
+                <p><input type="submit" value="update"> <a href="deleteAcc.jsp">Delete account</a></p>
             </form>
             <p><%= updated != null ? updated : ""%></p>
         </div>

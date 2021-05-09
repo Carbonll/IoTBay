@@ -140,4 +140,8 @@ public class DBManager {
         }
         return result;
     }
+    
+    public void deleteAudit(int ID) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTUSER.AUDITS WHERE USER_ID = " + ID);
+    }
 }
