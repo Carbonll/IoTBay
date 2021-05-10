@@ -39,6 +39,10 @@
         <servlet-name>DeleteAccServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeleteAccServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentServlet</servlet-class>
+    </servlet>
     
     <!-- insert servlet mapping stuff here -->
     <servlet-mapping>
@@ -72,6 +76,10 @@
     <servlet-mapping>
         <servlet-name>DeleteAccServlet</servlet-name>
         <url-pattern>/DeleteAccServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     
     <!-- yo whats up -->
