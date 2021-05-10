@@ -21,7 +21,7 @@
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
             <a href="LogoutServlet">logout</a>
-            <a href="BrowseServlet">main</a>
+            <a href="main.jsp">main</a>
             <a href="EditServlet">account</a>
             <a href="AuditServlet">access log</a>
         </div>
@@ -51,7 +51,7 @@
                         <td style="text-align: center"><%= row.getCategory()%></td>
                         <td style="text-align: center"><%= row.getPrice()%></td>
                         <td style="text-align: center"><%= row.getStock()%></td>
-                        <td style="text-align: center"><%= user.getRoleID()%></td>
+                        <td style="text-align: center">Add to order</td>
                     </tr>
                     <% }%>
                 </tbody>
