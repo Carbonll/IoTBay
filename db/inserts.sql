@@ -23,3 +23,22 @@ INSERT INTO IOTUSER.PRODUCT(PRODUCT_NAME, PRODUCT_CATEGORY, PRODUCT_PRICE, PRODU
 ('PIR Motion Sensor', 'Motion Sensor', 2.00, 100),
 ('Si4703 Radio Receiver', 'Wireless Sensor', 10.00, 100),
 ('Relais', 'Power Supply', 4.00, 100);
+
+INSERT INTO IOTUSER.PRODUCT(PRODUCT_NAME, PRODUCT_CATEGORY, PRODUCT_PRICE, PRODUCT_STOCK) VALUES 
+('Servo Motor', 'Motors', 2.00, 100),
+('L293D', 'Motors', 2.00, 100),
+('A4988', 'Motors', 6.00, 100),
+('HD44780 Displays', 'Displays', 5.00, 100),
+('7 Segment Display', 'Displays', 3.00, 100),
+('Bluetooth Adapter', 'Wireless', 7.00, 100),
+('GSM Surfstick', 'Wireless', 25.00, 100),
+('Infrared Diodes', 'Wireless', 3.00, 100),
+('Laser Module', 'Wireless', 2.00, 100),
+('GP2Y0A02YK', 'Motion Sensor', 8.00, 100),
+('USB GPS Receiver', 'Navigation', 10.00, 100),
+('MPU-6050 Gyroscope', 'Navigation', 3.00, 100),
+('DS1307 RTC', 'Navigation', 2.00, 100),
+('Arduino', 'Other', 5.00, 100),
+('Keypad', 'Other', 2.00, 100),
+('Magnet Valve', 'Other', 2.00, 100),
+('ULN2003', 'Motors', 4.00, 100);
