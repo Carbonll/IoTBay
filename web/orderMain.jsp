@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 17/03/2021, 12:22:28 PM
-    Author     : melvi
+    Document   : orderMain
+    Created on : 10/05/2021, 8:00:05 PM
+    Author     : Anthony
 --%>
 
 <%@page import="uts.isd.model.User"%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Page</title>
+        <title>Order Page</title>
     </head>
     <body>
         <%
@@ -60,3 +60,4 @@
         </div>
     </body>
 </html>
+

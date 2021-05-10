@@ -17,10 +17,11 @@
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
-            <a href="LogoutServlet">logout</a>
-            <a href="main.jsp">main</a>
-            <a href="EditServlet">account</a>
-            <a href="AuditServlet">access log</a>
+            <a href="LogoutServlet">Logout</a>
+            <a href="main.jsp">Main</a>
+            <a href="OrderServlet">Order log</a>
+            <a href="EditServlet">Account</a>
+            <a href="AuditServlet">Access log</a>
         </div>
         <br>
         <div>
