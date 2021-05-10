@@ -18,3 +18,8 @@ INSERT INTO IOTUSER.ROLE
  INSERT INTO IOTUSER."USER" 
      ("NAME", EMAIL, PASSWORD, ROLE_ID) VALUES
      ('admin', 'admin@iotbay.com', 'admin', 1);
+
+INSERT INTO IOTUSER.PRODUCT(PRODUCT_NAME, PRODUCT_CATEGORY, PRODUCT_PRICE, PRODUCT_STOCK) VALUES 
+('PIR Motion Sensor', 'Motion Sensor', 2.00, 100),
+('Si4703 Radio Receiver', 'Wireless Sensor', 10.00, 100),
+('Relais', 'Power Supply', 4.00, 100);
