@@ -80,6 +80,14 @@ public class Validator implements Serializable {
         return validate(cardExpPattern, card_exp);
     }
     
+    public boolean validatePaymentMethod(String p_method) {
+        if(p_method!=null)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     public void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email");
         session.setAttribute("passErr", "Enter Password");

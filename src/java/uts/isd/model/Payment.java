@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class Payment implements Serializable {
 
     private int ID;
+    private String paymentMethod;
     private String cardName;
     private String cardNo;
     private String cardExp;
@@ -24,6 +25,7 @@ public class Payment implements Serializable {
     public Payment(ResultSet rs) {
         try {
             this.ID = rs.getInt(1);
+            this.paymentMethod = rs.getString(2);
             this.cardName = rs.getString(5);
             this.cardNo = rs.getString(6);
             this.cardExp = rs.getString(7);
@@ -57,4 +59,8 @@ public class Payment implements Serializable {
     public int getUser_ID() {
         return user_ID;
     }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }  
 }

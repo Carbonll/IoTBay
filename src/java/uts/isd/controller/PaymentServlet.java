@@ -33,6 +33,7 @@ public class PaymentServlet extends HttpServlet {
         String cardNo = request.getParameter("card_no");
         String cardExp = request.getParameter("card_exp");
         String cardCvv = request.getParameter("card_cvv");
+        String paymentMethod = request.getParameter("payment_method");
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         session.setAttribute("c_updated", ""); //clear any error messages
@@ -49,11 +50,15 @@ public class PaymentServlet extends HttpServlet {
         } else if (!validator.validateCardCvv(cardCvv)) {
             session.setAttribute("c_updated", "Invalid CVV Format");
             request.getRequestDispatcher("edit.jsp").include(request, response);
+        } else if (!validator.validatePaymentMethod(paymentMethod)) {
+             session.setAttribute("c_updated", "Select a payment type");
+             request.getRequestDispatcher("edit.jsp").include(request, response);
         } else {
             try 
             {
                 Payment check = manager.findPaymentDetailsByID(ID);
                 if (check!=null) {
+                    manager.updatePaymentMethod(ID, paymentMethod);
                     manager.updateCardNo(ID, cardNo);
                     manager.updateCardName(ID, cardName);
                     manager.updateCardExp(ID, cardExp);

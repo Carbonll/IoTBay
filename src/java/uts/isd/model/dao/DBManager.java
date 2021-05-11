@@ -196,4 +196,8 @@ public class DBManager {
     public void updateCardCvv(int ID, String cardCvv) throws SQLException {
         st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_CVV = '" + cardCvv + "' WHERE USERID = " + ID);
     }
+    
+    public void updatePaymentMethod(int ID, String paymentMethod) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_METHOD = '" + paymentMethod + "' WHERE USERID = " + ID);
+    }   
 }
