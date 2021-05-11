@@ -31,6 +31,7 @@ public class EditServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         
+        
         User user = (User) session.getAttribute("user");
         Payment payment = null;
         DBManager manager = (DBManager) session.getAttribute("manager");
@@ -39,13 +40,15 @@ public class EditServlet extends HttpServlet {
         // Since login does the authentication we don't need to check the user exists again.
         try {
             payment = manager.findPaymentDetailsByID(user.getID());
-            if (user != null && payment != null) {
+            if (user != null) {
                 session.setAttribute("user", user);
                 session.setAttribute("payment", payment);
                 request.getRequestDispatcher("edit.jsp").include(request, response);
-            } 
+            } else {
+                request.getRequestDispatcher("edit.jsp").include(request, response);
+            }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage() == null ? "Unable to edit" : ex.getMessage());
+            System.out.println(ex.getMessage() != null ? "Unable to edit" : ex.getMessage());
         }
     }
 }
