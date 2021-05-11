@@ -161,8 +161,7 @@ public class DBManager {
     //PAYMENT DAO METHODS
     
     public void addPaymentID(int userID) throws SQLException {
-        String insert = "INSERT INTO IOTUSER.PAYMENT (USER_ID) VALUES (userID);";
-            st.executeUpdate(insert);
+        st.executeUpdate("INSERT INTO IOTUSER.PAYMENT (USERID)" + "VALUES (" + userID + ")");
     }
         
     public Payment findPaymentDetailsByID(int id) throws SQLException {

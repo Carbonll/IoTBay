@@ -19,7 +19,7 @@ public class Payment implements Serializable {
     private String cardNo;
     private String cardExp;
     private String cardCvv;
-    private int userID;
+    private int user_ID;
 
     public Payment(ResultSet rs) {
         try {
@@ -27,7 +27,7 @@ public class Payment implements Serializable {
             this.cardName = rs.getString(5);
             this.cardNo = rs.getString(6);
             this.cardExp = rs.getString(7);
-            this.userID = rs.getInt(9);
+            this.user_ID = rs.getInt(9);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage() == null ? "Unable to load payment" : "New payment object created");
         }
@@ -53,7 +53,7 @@ public class Payment implements Serializable {
         return cardCvv;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUser_ID() {
+        return user_ID;
     }
 }
