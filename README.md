@@ -3,4 +3,4 @@
 - [x] Radio button not checked on session close
 - [x] Payment Details not appearing on user edit page
 - [ ] Update look of page
-- [ ] Adding users puts it on top of db?
+
