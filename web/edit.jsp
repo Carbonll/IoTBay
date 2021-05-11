@@ -66,9 +66,9 @@
                     <tr>
                         <td>Payment Method</td>
                         <td>
-                            <input type="radio" id="card" name="payment_method" value="card">
+                            <input type="radio" id="card" name="payment_method" value="card"  <% if (payment.getPaymentMethod().equals("card")) { out.print("checked=\"checked\"");} %>>
                             <label for="card">Credit Card</label><br>
-                            <input type="radio" id="paypal" name="payment_method" value="paypal">
+                            <input type="radio" id="paypal" name="payment_method" value="paypal" <% if (payment.getPaymentMethod().equals("paypal")) { out.print("checked=\"checked\"");} %>>
                             <label for="paypal">Paypal</label><br>
                         </td>
                     </tr>
