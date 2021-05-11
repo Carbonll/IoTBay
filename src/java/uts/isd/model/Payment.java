@@ -22,6 +22,16 @@ public class Payment implements Serializable {
     private String cardCvv;
     private int user_ID;
 
+    public Payment(int ID, String paymentMethod, String cardName, String cardNo, String cardExp, String cardCvv, int user_ID) {
+        this.ID = ID;
+        this.paymentMethod = paymentMethod;
+        this.cardName = cardName;
+        this.cardNo = cardNo;
+        this.cardExp = cardExp;
+        this.cardCvv = cardCvv;
+        this.user_ID = user_ID;
+    }
+
     public Payment(ResultSet rs) {
         try {
             this.ID = rs.getInt(1);
@@ -63,4 +73,33 @@ public class Payment implements Serializable {
     public String getPaymentMethod() {
         return paymentMethod;
     }  
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
+    }
+
+    public void setCardExp(String cardExp) {
+        this.cardExp = cardExp;
+    }
+
+    public void setCardCvv(String cardCvv) {
+        this.cardCvv = cardCvv;
+    }
+
+    public void setUser_ID(int user_ID) {
+        this.user_ID = user_ID;
+    }
+    
 }

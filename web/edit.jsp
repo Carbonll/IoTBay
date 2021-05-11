@@ -59,7 +59,6 @@
         </div>
         <br>
         <div>
-            
             <p>Your current saved payment details are:</p>
             <form action=PaymentServlet method="post">
                 <input type="hidden" name="ID" value="${user.ID}">
@@ -75,7 +74,7 @@
                     </tr>
                     <tr>
                         <td>Card Holder</td>
-                        <td><input type="text" placeholder="<%= cNameErr != null ? cNameErr : "Full Name"%>" name="card_name" value="${payment.cardName}" required></td>
+                        <td><input type="text" name="card_name" value="${payment.cardName}" placeholder="<%= cNameErr != null ? cNameErr : "Full Name"%>" required></td>
                     </tr>
                     <tr>
                         <td>Card No</td>
@@ -93,7 +92,6 @@
                 <input type="submit" value="save">
             </form>
             <p><%= c_updated != null ? c_updated : ""%></p>
-            
         </div>
         <br>
         <div>
