@@ -27,6 +27,7 @@ public class Payment implements Serializable {
             this.cardName = rs.getString(5);
             this.cardNo = rs.getString(6);
             this.cardExp = rs.getString(7);
+            this.cardCvv = rs.getString(8);
             this.user_ID = rs.getInt(9);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage() == null ? "Unable to load payment" : "New payment object created");

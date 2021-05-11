@@ -164,13 +164,13 @@ public class DBManager {
         st.executeUpdate("INSERT INTO IOTUSER.PAYMENT (USERID)" + "VALUES (" + userID + ")");
     }
         
-    public Payment findPaymentDetailsByID(int id) throws SQLException {
-        String fetch = "SELECT * FROM IOTUSER.\"PAYMENT\" WHERE USER_ID = '" + id + "'";
+    public Payment findPaymentDetailsByID(int userID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"PAYMENT\" WHERE USERID = " + userID;
         ResultSet rs = st.executeQuery(fetch);
 
         while (rs.next()) {
             int paymentid = rs.getInt(9);
-            if (paymentid == id) {
+            if (paymentid == userID) {
                 return new Payment(rs);
             }
         }
@@ -182,18 +182,18 @@ public class DBManager {
     }
     
     public void updateCardNo(int ID, String cardNo) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NO = '" + cardNo + "' WHERE ID = " + ID);
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NO = '" + cardNo + "' WHERE USERID = " + ID);
     }
     
-    public void updateCardName(int ID, String cardName) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NAME = '" + cardName + "' WHERE ID = " + ID);
+    public void updateCardName(int ID, String cardName) throws SQLException {  
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NAME = '" + cardName + "' WHERE USERID = " + ID);
     }
     
     public void updateCardExp(int ID, String cardExp) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_EXP = '" + cardExp + "' WHERE ID = " + ID);
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_EXP = '" + cardExp + "' WHERE USERID = " + ID);
     }
     
     public void updateCardCvv(int ID, String cardCvv) throws SQLException {
-        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_CVV = '" + cardCvv + "' WHERE ID = " + ID);
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_CVV = '" + cardCvv + "' WHERE USERID = " + ID);
     }
 }

@@ -50,26 +50,21 @@ public class PaymentServlet extends HttpServlet {
             session.setAttribute("c_updated", "Invalid CVV Format");
             request.getRequestDispatcher("edit.jsp").include(request, response);
         } else {
-            try {
+            try 
+            {
                 Payment check = manager.findPaymentDetailsByID(ID);
                 if (check!=null) {
                     manager.updateCardNo(ID, cardNo);
                     manager.updateCardName(ID, cardName);
                     manager.updateCardExp(ID, cardExp);
                     manager.updateCardCvv(ID, cardCvv);
-                    Payment user = manager.findPaymentDetailsByID(ID);
-                    session.setAttribute("user", user);
+                    Payment payment = manager.findPaymentDetailsByID(ID);
+                    session.setAttribute("payment", payment);
                     session.setAttribute("c_updated", "Payment details successfully updated.");
                     request.getRequestDispatcher("edit.jsp").include(request, response);
-                } else {
-                    manager.addPayment(cardName, cardNo, cardExp, cardCvv);
-                    Payment user = manager.findPaymentDetailsByID(ID);
-                    session.setAttribute("user", user);
-//                    session.setAttribute("c_updated", "Please try again.");
-                    request.getRequestDispatcher("edit.jsp").include(request, response);
-                }
+                } 
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage() == null ? "Unable to update payment details" : "Payment details updated");
+                System.out.println(ex.getMessage() == null ? "Unable to update payment details" : ex.getMessage());
             }
             response.sendRedirect("edit.jsp");
         }

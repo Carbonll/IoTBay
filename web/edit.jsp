@@ -59,6 +59,7 @@
         </div>
         <br>
         <div>
+            
             <p>Your current saved payment details are:</p>
             <form action=PaymentServlet method="post">
                 <input type="hidden" name="ID" value="${user.ID}">
@@ -74,24 +75,25 @@
                     </tr>
                     <tr>
                         <td>Card Holder</td>
-                        <td><input type="text" placeholder="<%= cNameErr != null ? cNameErr : "Full Name"%>" name="card_name" required></td>
+                        <td><input type="text" placeholder="<%= cNameErr != null ? cNameErr : "Full Name"%>" name="card_name" value="${payment.cardName}" required></td>
                     </tr>
                     <tr>
                         <td>Card No</td>
-                        <td><input type="text" placeholder="<%= cNoErr != null ? cNoErr : "**** **** **** ****"%>" name="card_no" required></td>
+                        <td><input type="text" placeholder="<%= cNoErr != null ? cNoErr : "**** **** **** ****"%>" name="card_no" value="${payment.cardNo}" required></td>
                     </tr>
                     <tr>
                         <td>Card Expiry</td>
-                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "MM/YYYY"%>" name="card_exp" required></td>
+                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "MM/YYYY"%>" name="card_exp" value="${payment.cardExp}" required></td>
                     </tr>
                     <tr>
                         <td>Card CVV</td>
-                        <td><input type="text" placeholder="<%= cCvvErr != null ? cCvvErr : "CVV"%>" name="card_cvv" required></td>
+                        <td><input type="text" placeholder="<%= cCvvErr != null ? cCvvErr : "CVV"%>" name="card_cvv" value="${payment.cardCvv}" required></td>
                     </tr>
                     </table>
                 <input type="submit" value="save">
             </form>
             <p><%= c_updated != null ? c_updated : ""%></p>
+            
         </div>
         <br>
         <div>
