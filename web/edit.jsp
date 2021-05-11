@@ -4,6 +4,7 @@
     Author     : melvi
 --%>
 
+<%@page import="uts.isd.model.Payment"%>
 <%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,14 +12,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Page</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">-->
     </head>
     <body>
         <%
             User user = (User) session.getAttribute("user");
+            Payment payment = (Payment) session.getAttribute("payment");
             String updated = (String) session.getAttribute("updated");
-            String existErr = (String) session.getAttribute("existErr");
-            String emailErr = (String) session.getAttribute("emailErr");
+            String c_updated = (String) session.getAttribute("c_updated");
+            
             String cNameErr = (String) session.getAttribute("cNameErr");
             String cNoErr = (String) session.getAttribute("cNoErr");
             String cExpErr = (String) session.getAttribute("cExpErr");
@@ -59,35 +61,37 @@
         <div>
             <p>Your current saved payment details are:</p>
             <form action=PaymentServlet method="post">
+                <input type="hidden" name="ID" value="${user.ID}">
                 <table>
                     <tr>
                         <td>Payment Method</td>
                         <td>
                             <input type="radio" id="card" name="payment_method" value="card">
-                            <label for="card">Card</label><br>
+                            <label for="card">Credit Card</label><br>
                             <input type="radio" id="paypal" name="payment_method" value="paypal">
                             <label for="paypal">Paypal</label><br>
                         </td>
                     </tr>
                     <tr>
-                        <td>Card Name</td>
-                        <td><input type="text" placeholder="<%= cNameErr != null ? cNameErr : "Enter Card Name"%>" name="card_name" required></td>
+                        <td>Card Holder</td>
+                        <td><input type="text" placeholder="<%= cNameErr != null ? cNameErr : "Full Name"%>" name="card_name" required></td>
                     </tr>
                     <tr>
                         <td>Card No</td>
-                        <td><input type="text" placeholder="<%= cNoErr != null ? cNoErr : "Enter Card No"%>" name="card_no" required></td>
+                        <td><input type="text" placeholder="<%= cNoErr != null ? cNoErr : "**** **** **** ****"%>" name="card_no" required></td>
                     </tr>
                     <tr>
                         <td>Card Expiry</td>
-                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "Enter Card Expiry"%>" name="card_exp" required></td>
+                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "MM/YYYY"%>" name="card_exp" required></td>
                     </tr>
                     <tr>
                         <td>Card CVV</td>
-                        <td><input type="text" placeholder="<%= cCvvErr != null ? cCvvErr : "Enter Card CVV"%>" name="card_cvv" required></td>
+                        <td><input type="text" placeholder="<%= cCvvErr != null ? cCvvErr : "CVV"%>" name="card_cvv" required></td>
                     </tr>
                     </table>
                 <input type="submit" value="save">
             </form>
+            <p><%= c_updated != null ? c_updated : ""%></p>
         </div>
         <br>
         <div>

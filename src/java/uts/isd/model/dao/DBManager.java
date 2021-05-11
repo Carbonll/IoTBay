@@ -89,6 +89,19 @@ public class DBManager {
         }
         return null;
     }
+    
+    public User findUserByName(String name) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE NAME = '" + name + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String userName = rs.getString(2);
+            if (userName.equals(name)) {
+                return new User(rs);
+            }
+        }
+        return null;
+    }
 
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.\"USER\"";
@@ -143,5 +156,45 @@ public class DBManager {
     
     public void deleteAudit(int ID) throws SQLException {
         st.executeUpdate("DELETE FROM IOTUSER.AUDITS WHERE USER_ID = " + ID);
+    }
+    
+    //PAYMENT DAO METHODS
+    
+    public void addPaymentID(int userID) throws SQLException {
+        String insert = "INSERT INTO IOTUSER.PAYMENT (USER_ID) VALUES (userID);";
+            st.executeUpdate(insert);
+    }
+        
+    public Payment findPaymentDetailsByID(int id) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"PAYMENT\" WHERE USER_ID = '" + id + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            int paymentid = rs.getInt(9);
+            if (paymentid == id) {
+                return new Payment(rs);
+            }
+        }
+        return null;
+    }
+    
+    public void addPayment(String cardname, String cardno, String cardexp, String cardcvv) throws SQLException {
+        st.executeUpdate("INSERT INTO IOTUSER.\"PAYMENT\"(\"CARD_NAME\", CARD_NO, CARD_EXP, CARD_CVV)" + "VALUES ('" + cardname + "', '" + cardno + "', '" + cardexp + "', '" + cardcvv + ")");
+    }
+    
+    public void updateCardNo(int ID, String cardNo) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NO = '" + cardNo + "' WHERE ID = " + ID);
+    }
+    
+    public void updateCardName(int ID, String cardName) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_NAME = '" + cardName + "' WHERE ID = " + ID);
+    }
+    
+    public void updateCardExp(int ID, String cardExp) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_EXP = '" + cardExp + "' WHERE ID = " + ID);
+    }
+    
+    public void updateCardCvv(int ID, String cardCvv) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET CARD_CVV = '" + cardCvv + "' WHERE ID = " + ID);
     }
 }

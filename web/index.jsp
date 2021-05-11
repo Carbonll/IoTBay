@@ -24,7 +24,7 @@
         <br>
         <div>
             <h2>Welcome to the IoTBay online store!</h2>
-            <p>Lorem Ipsum</p>
+            <p>Prototype</p>
         </div>
         <jsp:include page="/ConnServlet" flush="true" />
     </body>

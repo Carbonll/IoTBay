@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uts.isd.model.User;
+import uts.isd.model.Payment;
 import uts.isd.model.dao.DBManager;
 
 import java.text.DateFormat;
@@ -62,6 +63,7 @@ public class RegisterServlet extends HttpServlet {
                         User user = manager.findUserByEmail(email);
                         Date date = Calendar.getInstance().getTime();
                         manager.addAudit(user.getID(), "Register", date);
+                        manager.addPaymentID(user.getID());
                         session.setAttribute("user", user);
                         request.getRequestDispatcher("main.jsp").include(request, response);
                     } else { //user has attempted to input staff code
@@ -70,6 +72,7 @@ public class RegisterServlet extends HttpServlet {
                             User user = manager.findUserByEmail(email);
                             Date date = Calendar.getInstance().getTime();
                             manager.addAudit(user.getID(), "Register", date);
+                            manager.addPaymentID(user.getID());
                             session.setAttribute("user", user);
                             request.getRequestDispatcher("main.jsp").include(request, response);
                         } else {
@@ -82,7 +85,7 @@ public class RegisterServlet extends HttpServlet {
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 }
             } catch (SQLException | NullPointerException ex) {
-                System.out.println(ex.getMessage() == null ? "User doesn't exist" : "Welcome!");
+                System.out.println(ex.getMessage() == null ? "User doesn't exist" : ex.getMessage());
             }
         }
         validator.clear(session);

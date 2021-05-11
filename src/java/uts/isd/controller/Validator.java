@@ -22,6 +22,11 @@ public class Validator implements Serializable {
     private String phonePattern = "([0]{1}[4]{1}[0-9]{8})*";
     private String codePattern = "1234*"; //staff registration code
     private String datePattern = "^\\d{2}-\\d{2}-\\d{4}$"; //doesn't really check for valid months/days, but it'll work
+    
+    private String cardNoPattern = "\\b\\d{4}[ -]?\\d{4}[ -]?\\d{4}[ -]?\\d{4}\\b";
+    private String cardHolderPattern = "[a-zA-Z0-9]{3,}";
+    private String cardCvvPattern = "\\d{3}";
+    private String cardExpPattern = "(0[1-9]|10|11|12)/20[0-9]{2}$";
 
     public Validator() {}
 
@@ -57,6 +62,22 @@ public class Validator implements Serializable {
     
     public boolean validateDate(String date) {
         return validate(datePattern, date);
+    }
+    
+    public boolean validateCardNo(String card_no) {
+        return validate(cardNoPattern, card_no);
+    }
+    
+    public boolean validateCardHolder(String card_name) {
+        return validate(cardHolderPattern, card_name);
+    }
+    
+    public boolean validateCardCvv(String card_cvv) {
+        return validate(cardCvvPattern, card_cvv);
+    }
+    
+    public boolean validateCardExp(String card_exp) {
+        return validate(cardExpPattern, card_exp);
     }
     
     public void clear(HttpSession session) {

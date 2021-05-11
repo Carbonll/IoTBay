@@ -7,82 +7,71 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import uts.isd.model.*;
+import uts.isd.model.dao.DBManager;
 
 /**
  *
  * @author Leon
  */
-@WebServlet(name = "PaymentServlet", urlPatterns = {"/PaymentServlet"})
 public class PaymentServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PaymentServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PaymentServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Validator validator = new Validator();
+        
+        int ID = Integer.parseInt(request.getParameter("ID"));
+        String cardName = request.getParameter("card_name");
+        String cardNo = request.getParameter("card_no");
+        String cardExp = request.getParameter("card_exp");
+        String cardCvv = request.getParameter("card_cvv");
+        
+        DBManager manager = (DBManager) session.getAttribute("manager");
+        session.setAttribute("c_updated", ""); //clear any error messages
+        
+        if (!validator.validateCardNo(cardNo)) { //validate format for all fields
+            session.setAttribute("c_updated", "Invalid Card No");
+            request.getRequestDispatcher("edit.jsp").include(request, response);
+        } else if (!validator.validateCardHolder(cardName)) {
+            session.setAttribute("c_updated", "Invalid Name");
+            request.getRequestDispatcher("edit.jsp").include(request, response);
+        } else if (!validator.validateCardExp(cardExp)) {
+            session.setAttribute("c_updated", "Invalid Date Format");
+            request.getRequestDispatcher("edit.jsp").include(request, response);
+        } else if (!validator.validateCardCvv(cardCvv)) {
+            session.setAttribute("c_updated", "Invalid CVV Format");
+            request.getRequestDispatcher("edit.jsp").include(request, response);
+        } else {
+            try {
+                Payment check = manager.findPaymentDetailsByID(ID);
+                if (check!=null) {
+                    manager.updateCardNo(ID, cardNo);
+                    manager.updateCardName(ID, cardName);
+                    manager.updateCardExp(ID, cardExp);
+                    manager.updateCardCvv(ID, cardCvv);
+                    Payment user = manager.findPaymentDetailsByID(ID);
+                    session.setAttribute("user", user);
+                    session.setAttribute("c_updated", "Payment details successfully updated.");
+                    request.getRequestDispatcher("edit.jsp").include(request, response);
+                } else {
+                    manager.addPayment(cardName, cardNo, cardExp, cardCvv);
+                    Payment user = manager.findPaymentDetailsByID(ID);
+                    session.setAttribute("user", user);
+//                    session.setAttribute("c_updated", "Please try again.");
+                    request.getRequestDispatcher("edit.jsp").include(request, response);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage() == null ? "Unable to update payment details" : "Payment details updated");
+            }
+            response.sendRedirect("edit.jsp");
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
