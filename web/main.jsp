@@ -15,12 +15,6 @@
     <body>
         <%
         User user = (User) session.getAttribute("user");
-        String existErr = (String) session.getAttribute("existErr");
-        String emailErr = (String) session.getAttribute("emailErr");
-        String passErr = (String) session.getAttribute("passErr");
-        String nameErr = (String) session.getAttribute("nameErr");
-        String phoneErr = (String) session.getAttribute("phoneErr");
-        String codeErr = (String) session.getAttribute("codeErr"); 
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
@@ -33,35 +27,56 @@
         <div>
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
         </div>
-            <% if (user.getRoleID() == 1){ %>
-                    <h2>Add Account</h2>
-                    <div>
-                    <form action=RegisterServlet method="post">
-                <table>
-                    <tr>
-                        <td>Name</td>
-                        <td><input type="text" placeholder="<%= nameErr != null ? nameErr : "Enter Name"%>" name="name" required></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" placeholder="<%= emailErr != null ? emailErr : "Enter Email"%>" name="email" required></td>
-                    </tr>
-                    <tr>
-                        <td>Phone</td>
-                        <td><input type="text" placeholder="<%= phoneErr != null ? phoneErr : "Enter Phone"%>" name="phone"></td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="text" placeholder="<%= passErr != null ? passErr : "Enter Password"%>" name="password" required></td>
-                    </tr>
-                    <tr>
-                        <td>Staff Code</td>
-                        <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Create Account">
-            </form>
-            <p><%= existErr != null ? existErr : ""%></p>
-                    </div>
-                    </body>
-                    </html>
+        <% if (user.getRoleID() == 1){ %>
+
+    <center>
+        <h1>Books Management</h1>
+        <h2>
+            <a href="/new">Add New User</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="/list">List All Users</a>
+
+        </h2>
+    </center>
+    <div align="center">
+        <table border="1" cellpadding="5">
+            <caption><h2>List of Books</h2></caption>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Password</th>
+                <th>Role ID</th>
+                <th>Actions</th>
+            </tr>
+            <c:forEach var="user" items="${listUser}">
+                <tr>
+                    <td><c:out value="${user.id}" /></td>
+                <td><c:out value="${user.name}" /></td>
+                <td><c:out value="${user.email}" /></td>
+                <td><c:out value="${user.phone}" /></td>
+                <td><c:out value="${user.password}" /></td>
+                <td><c:out value="${user.role_ID}" /></td>
+                <td>
+                    <a href="/edit?id=<c:out value='${user.id}' />">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/delete?id=<c:out value='${user.id}' />">Delete</a>                     
+                </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>   
+
+
+    <%}else{%>
+
+   Whatever the other users will see, regular staff and customers.
+
+
+
+
+    <%}%>
+</div>
+</body>
+</html>
