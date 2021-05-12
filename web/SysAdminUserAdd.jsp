@@ -18,6 +18,7 @@
         String nameErr = (String) session.getAttribute("nameErr");
         String phoneErr = (String) session.getAttribute("phoneErr");
         String codeErr = (String) session.getAttribute("codeErr");
+        String roleErr = (String) session.getAttribute("roleErr");
     %>
     <body>
         <%
@@ -41,7 +42,7 @@
             </div>
             
             <div>
-                <form action=RegisterServlet method="post">
+                <form action=AddUserServlet method="post">
                 <table>
                     <tr>
                         <td>Name</td>
@@ -61,7 +62,7 @@
                     </tr>
                     <tr>
                         <td>Role ID</td>
-                        <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
+                        <td><input type="text" placeholder="<%= roleErr != null ? "Role value incorrect" : "Enter Code"%>" name="code" ></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
                     </tr>
                 </table>
                 <input type="submit" value="Create User">
