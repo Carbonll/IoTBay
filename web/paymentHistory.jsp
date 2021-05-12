@@ -1,22 +1,22 @@
 <%-- 
-    Document   : audit log
-    Created on : 09/05/2021, 12:06:58 AM
-    Author     : melvi
+    Document   : paymentHistory
+    Created on : 12/05/2021, 12:01:24 PM
+    Author     : Leon
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
-
 <%@page import="uts.isd.controller.*"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Access Log Page</title>
+        <title>Payment History Page</title>
     </head>
     <%
-        ArrayList<Audit> log = (ArrayList<Audit>) session.getAttribute("log");
-        String dateErr = (String) session.getAttribute("dateErr");
+        ArrayList<PaymentHistory> log = (ArrayList<PaymentHistory>) session.getAttribute("log");
+        String paymentErr = (String) session.getAttribute("paymentErr");
     %>
     <body>
         <div>
@@ -28,9 +28,9 @@
             <a href="PaymentHistoryServlet">payment history</a>
         </div>
         <br>
-        <p>Your account access logs are displayed below.</p>
-        <form action="AuditServlet">
-            <p>Search: <input type="text" name="date" placeholder="dd-mm-yyyy"><input type="submit" value="search"> <%= dateErr != null ? dateErr : ""%></p>
+        <p>Your payment history are displayed below.</p>
+        <form action="PaymentHistoryServlet">
+            <p>Search: <input type="text" name="payment_id" placeholder="Payment ID"><input type="text" name="date" placeholder="dd-mm-yyyy"><input type="submit" value="search"> <%= paymentErr != null ? paymentErr : ""%></p>
         </form>
         <br>
         <div>
@@ -40,18 +40,18 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>Audit ID</th>
+                        <th>Payment ID</th>
                         <th>User ID</th>
-                        <th>Event</th>
-                        <th>Date/Time</th>
+                        <th>Order ID</th>
+                        <th>Payment Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (Audit row : log) {%>
+                    <% for (PaymentHistory row : log) {%>
                     <tr>
                         <td style="text-align: center"><%= row.getID()%></td>
                         <td style="text-align: center"><%= row.getUserID()%></td>
-                        <td style="text-align: center"><%= row.getEvent()%></td>
+                        <td style="text-align: center"><%= row.getOrder()%></td>
                         <td style="text-align: center"><%= row.getDate()%></td>
                     </tr>
                     <% }%>

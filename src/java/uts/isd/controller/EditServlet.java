@@ -29,9 +29,7 @@ public class EditServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
-        
-        
+
         User user = (User) session.getAttribute("user");
         Payment payment = null;
         DBManager manager = (DBManager) session.getAttribute("manager");
@@ -40,11 +38,12 @@ public class EditServlet extends HttpServlet {
         // Since login does the authentication we don't need to check the user exists again.
         try {
             payment = manager.findPaymentDetailsByID(user.getID());
-            if (user != null) {
+            if (user != null || payment != null) {
                 session.setAttribute("user", user);
                 session.setAttribute("payment", payment);
                 request.getRequestDispatcher("edit.jsp").include(request, response);
             } else {
+                session.setAttribute("existErr", "User does not exist");
                 request.getRequestDispatcher("edit.jsp").include(request, response);
             }
         } catch (SQLException ex) {

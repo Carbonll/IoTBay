@@ -27,6 +27,7 @@ public class Validator implements Serializable {
     private String cardHolderPattern = "(.*?)";
     private String cardCvvPattern = "(.*?)";
     private String cardExpPattern = "(.*?)";
+    private String paymentIDPattern = "^\\d{1,6}$";
 
     public Validator() {}
 
@@ -86,6 +87,10 @@ public class Validator implements Serializable {
             return true;
         }
         return false;
+    }
+    
+    public boolean validatePaymentID(String p_id){
+        return validate(paymentIDPattern, p_id);
     }
     
     public void clear(HttpSession session) {

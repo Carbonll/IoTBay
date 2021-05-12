@@ -14,6 +14,7 @@
     <body>
         <%
             User user = (User) session.getAttribute("user");
+            String dateErr = (String) session.getAttribute("dateErr");
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
@@ -21,10 +22,12 @@
             <a href="main.jsp">main</a>
             <a href="EditServlet">account</a>
             <a href="AuditServlet">access log</a>
+            <a href="PaymentHistoryServlet">payment history</a>
         </div>
         <br>
         <div>
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
+            <p><%= dateErr != null ? dateErr : ""%></p>
         </div>
     </body>
 </html>

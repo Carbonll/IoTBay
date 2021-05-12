@@ -200,4 +200,31 @@ public class DBManager {
     public void updatePaymentMethod(int ID, String paymentMethod) throws SQLException {
         st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_METHOD = '" + paymentMethod + "' WHERE USERID = " + ID);
     }   
+    
+    //PAYMENT HISTORY DAO METHODS
+    public ArrayList<PaymentHistory> fetchPaymentHistoryByUserID(int userID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PAYMENTHISTORY WHERE USER_ID = " + userID;
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<PaymentHistory> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new PaymentHistory(rs));
+        }
+        return result;
+    }
+    
+    public ArrayList<PaymentHistory> fetchPaymentHistoryByDateAndPaymentID(int userID, String date, int paymentID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PAYMENTHISTORY WHERE USER_ID = " + userID + " AND PAYMENT_DATE LIKE '%" + date + "%'" + " AND ID = " + paymentID + "";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<PaymentHistory> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new PaymentHistory(rs));
+        }
+        return result;
+    }
+    
+    public void deletePayment(int ID) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_METHOD = NULL, CARD_NO = NULL, CARD_EXP = NULL, CARD_CVV = NULL, CARD_NAME = NULL WHERE USERID = " + ID);
+    }
 }

@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Page</title>
-        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     </head>
     <body>
         <%
@@ -32,6 +32,7 @@
             <a href="main.jsp">main</a>
             <a href="EditServlet">account</a>
             <a href="AuditServlet">access log</a>
+            <a href="PaymentHistoryServlet">payment history</a>
         </div>
         <br>
         <div>
@@ -92,14 +93,14 @@
                     </tr>
                     <tr>
                         <td>Card Expiry</td>
-                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "MM/YYYY"%>" name="card_exp" value="${payment.cardExp}" required></td>
+                        <td><input type="text" placeholder="<%= cExpErr != null ? cExpErr : "MM/YY"%>" name="card_exp" value="${payment.cardExp}" required></td>
                     </tr>
                     <tr>
                         <td>Card CVV</td>
                         <td><input type="text" placeholder="<%= cCvvErr != null ? cCvvErr : "CVV"%>" name="card_cvv" value="${payment.cardCvv}" required></td>
                     </tr>
                     </table>
-                <input type="submit" value="save">
+                <input type="submit" value="save"> <a href="deletePayment.jsp">Delete Payment Details</a>
             </form>
             <p><%= c_updated != null ? c_updated : ""%></p>
         </div>
