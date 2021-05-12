@@ -26,6 +26,21 @@
         <br>
         <div>
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
+            
+            <%    if (user.getRoleID() == 1) { %>
+                    
+                    <table>
+                    
+                    
+                    
+                    
+                    
+                    </table>
+                    
+                    
+                }
+                 
+            %>
         </div>
         <% if (user.getRoleID() == 1){ %>
         <div>
