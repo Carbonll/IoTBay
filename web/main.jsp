@@ -28,34 +28,16 @@
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
             
             <%    if (user.getRoleID() == 1) { %>
-                    
-                    <table>
-                    
-                    
-                    
-                    
-                    
-                    </table>
-                    
-                    
-                }
-                 
-            %>
-        </div>
-        <% if (user.getRoleID() == 1){ %>
-        <div>
-            <a href="userList.jsp">User List</a>
-            <a href="userForm.jsp">Create a User</a>
+            
+            <a href="SysAdminUserAdd.jsp">Create a User</a>
+            <a href="SysAdminUserManage.jsp">User Management</a>
+
+
         </div>
       
-
-
          <%}else{%>
 
    Whatever the other users will see, regular staff and customers.
-
-
-
 
     <%}%>
 </div>
