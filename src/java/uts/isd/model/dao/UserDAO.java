@@ -37,8 +37,7 @@ public class UserDAO {
             } catch (ClassNotFoundException e) {
                 throw new SQLException(e);
             }
-            jdbcConnection = DriverManager.getConnection(
-                                        jdbcURL, jdbcUsername, jdbcPassword);
+            jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         }
     }
      
@@ -136,7 +135,7 @@ public class UserDAO {
         connect();
          
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, ID); // use of id needs to be changed, id is not used in db but ID is double check things first before making changes
+        statement.setInt(1, user.getID()); // use of id needs to be changed, id is not used in db but ID is double check things first before making changes
          
         ResultSet resultSet = statement.executeQuery();
          
