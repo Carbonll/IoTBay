@@ -37,7 +37,7 @@
             <%    if (user.getRoleID() == 1) { %>
             
             <div>
-            <a href="SysAdminR.jsp">User Management</a>
+            <a href="SysAdminUserManage.jsp">User Management</a>
             </div>
             
             <div>
@@ -64,7 +64,7 @@
                         <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
                     </tr>
                 </table>
-                <input type="submit" value="sign up">
+                <input type="submit" value="Create User">
             </form>
             <p><%= existErr != null ? existErr : ""%></p>
         </div>
