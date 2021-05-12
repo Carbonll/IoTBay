@@ -23,7 +23,7 @@ public class User implements Serializable {
     private int paymentID;
     private int shipmentID;
 
-    public User(int id, String name, String email, String phone, String password, int roleID) {
+    public User(int ID, String name, String email, String phone, String password, int roleID) {
         this.ID = ID;
         this.name = name;
         this.email = email;
