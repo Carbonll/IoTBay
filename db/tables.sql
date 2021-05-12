@@ -7,6 +7,13 @@
  * Author:  melvi
  * Created: 21/04/2021
  */
+/*
+"jdbc:derby://localhost:1527/";//replace this string with your jdbc:derby local host url   
+"iotdb";//name of the database   
+"iotuser";//db root user   
+"admin"; //db root password   
+"org.apache.derby.jdbc.ClientDriver"; //jdbc client driver - built in with NetBeans   
+*/
 
 CREATE TABLE "USER" (
     ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 100000, INCREMENT BY 1),
@@ -61,11 +68,14 @@ CREATE TABLE "SHIPMENT" (
 
 ALTER TABLE "USER" 
     ADD ROLE_ID INTEGER;
---     ADD FOREIGN KEY (ROLE_ID) REFERENCES ROLE(ID);
+    
+    ADD FOREIGN KEY (ROLE_ID) REFERENCES ROLE(ID);
+    
+    ADD PAYMENT_ID INTEGER;
+    
+    ADD FOREIGN KEY(PAYMENT_ID) REFERENCES PAYMENT(ID);
 
---     ADD PAYMENT_ID INTEGER;
---     ADD FOREIGN KEY(PAYMENT_ID) REFERENCES PAYMENT(ID);
-
---     ADD SHIPMENT_ID INTEGER;
---     ADD FOREIGN KEY(SHIPMENT_ID) REFERENCES SHIPMENT(ID);
+    ADD SHIPMENT_ID INTEGER;
+    
+    ADD FOREIGN KEY(SHIPMENT_ID) REFERENCES SHIPMENT(ID);
 
