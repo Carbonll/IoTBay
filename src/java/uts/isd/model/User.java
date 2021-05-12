@@ -23,12 +23,13 @@ public class User implements Serializable {
     private int paymentID;
     private int shipmentID;
 
-    public User(int ID, String name, String email, String phone, String password) {
+    public User(int ID, String name, String email, String phone, String password, int roleID) {
         this.ID = ID;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phone = phone;
+        this.password = password;
+        this.roleID = roleID;
     }
 
     public User(ResultSet rs) { //uses an sql result set's rows to fill in User attributes
@@ -109,4 +110,6 @@ public class User implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }
+
