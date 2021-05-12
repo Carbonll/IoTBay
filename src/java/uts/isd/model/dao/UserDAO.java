@@ -82,7 +82,7 @@ public class UserDAO {
             String password = resultSet.getString("password");
             int roleID = resultSet.getInt("role_ID");
              
-            User user = new User(ID,name, email, phone, password, roleID);
+            User user = new User(ID, name, email, phone, password, roleID);
             listUser.add(user);
         }
          
