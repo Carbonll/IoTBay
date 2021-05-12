@@ -18,7 +18,7 @@ CREATE TABLE "USER" (
 );
 
 -- note: execute inserts.sql to insert roles
-CREATE TABLE ROLE (
+CREATE TABLE "ROLE" (
     ID INTEGER NOT NULL,
     ROLE_NAME VARCHAR(255) NOT NULL,
     PRIMARY KEY(ID)
