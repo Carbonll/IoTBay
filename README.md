@@ -10,3 +10,5 @@
 - [x] Update payment details
 
 ALL TASKS DONE
+
+> Need to link payment_id to order_id when order feature completed. And add order to payment history using ```addPaymentHistory(int userID, int orderID, Date date)``` query in DBManager.
