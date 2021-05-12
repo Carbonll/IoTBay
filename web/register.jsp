@@ -48,7 +48,7 @@
                     </tr>
                     <tr>
                         <td>Staff Code</td>
-                        <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td>
+                        <td><input type="text" placeholder="<%= codeErr != null ? codeErr : "Enter Code"%>" name="code"></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
                     </tr>
                 </table>
                 <input type="submit" value="sign up">
