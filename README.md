@@ -11,4 +11,5 @@
 
 ALL TASKS DONE
 
-> Need to link payment_id to order_id when order feature completed. And add order to payment history using ```addPaymentHistory(int userID, int orderID, Date date)``` query in DBManager.
+
+> When order feature done, add order_id and order_date to payment history db using ```addPaymentHistory(int userID, int orderID, Date date)``` query in DBManager. Add/Update order (payment_date and payment_amound) to payment db once order submitted as well.
