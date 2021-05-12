@@ -201,6 +201,14 @@ public class DBManager {
         st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_METHOD = '" + paymentMethod + "' WHERE USERID = " + ID);
     }   
     
+    public void updatePaymentAmount(int ID, String paymentAmount) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_AMOUNT = '" + paymentAmount + "' WHERE USERID = " + ID);
+    }   
+    
+    public void updatePaymentDate(int ID, String paymentDate) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_DATE = '" + paymentDate + "' WHERE USERID = " + ID);
+    }     
+    
     //PAYMENT HISTORY DAO METHODS
     public ArrayList<PaymentHistory> fetchPaymentHistoryByUserID(int userID) throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.PAYMENTHISTORY WHERE USER_ID = " + userID;
