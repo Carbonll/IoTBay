@@ -4,6 +4,7 @@
 - [x] Payment Details not appearing on user edit page
 - [ ] Payment history list
 - [ ] Delete payment details
-- [ ] Update pyment history db with fk orderid when order db done
+- [ ] Update payment history db with fk orderid when order db done
+- [ ] Update date generated when order submitted <PaymentHistoryServlet.java>
 - [ ] Update look of page
 
