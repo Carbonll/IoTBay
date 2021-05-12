@@ -224,6 +224,12 @@ public class DBManager {
         return result;
     }
     
+    public void addPaymentHistory(int userID, int orderID, Date date) throws SQLException {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        st.executeUpdate("INSERT INTO IOTUSER.PAYMENTHISTORY (USER_ID, ORDER_ID, PAYMENT_DATE)" + "VALUES (" + userID + ", '" + orderID + "', '" + strDate + "')");
+    }
+    
     public void deletePayment(int ID) throws SQLException {
         st.executeUpdate("UPDATE IOTUSER.\"PAYMENT\" SET PAYMENT_METHOD = NULL, CARD_NO = NULL, CARD_EXP = NULL, CARD_CVV = NULL, CARD_NAME = NULL WHERE USERID = " + ID);
     }
