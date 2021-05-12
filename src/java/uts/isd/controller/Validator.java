@@ -23,7 +23,7 @@ public class Validator implements Serializable {
     private String codePattern = "1234*"; //staff registration code
     private String datePattern = "^\\d{2}-\\d{2}-\\d{4}$"; //doesn't really check for valid months/days, but it'll work
     
-    private String cardNoPattern = "(.*?)";
+    private String cardNoPattern = "(?<!\\d)\\d{16}(?!\\d)";
     private String cardHolderPattern = "(.*?)";
     private String cardCvvPattern = "(.*?)";
     private String cardExpPattern = "(.*?)";
