@@ -6,5 +6,5 @@
 - [x] Delete payment details
 - [ ] Update payment history db with fk orderid when order db done
 - [ ] Update date/row generated when order submitted <PaymentHistoryServlet.java>
-- [ ] Update look of page
+
 
