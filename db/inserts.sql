@@ -10,7 +10,7 @@
  */
 
 INSERT INTO IOTUSER.ROLE
-    (ID, ROLE_NAME) VALUES
+    (ROLE_ ID, ROLE_NAME) VALUES
     (1, 'System Admin'),
     (2, 'Staff'),
     (3, 'Customer');
