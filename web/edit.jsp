@@ -11,10 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Edit Page</title>
     </head>
+    
     <body>
+        
         <%
             User user = (User) session.getAttribute("user");
             Payment payment = (Payment) session.getAttribute("payment");
@@ -25,17 +28,46 @@
             String cNoErr = (String) session.getAttribute("cNoErr");
             String cExpErr = (String) session.getAttribute("cExpErr");
             String cCvvErr = (String) session.getAttribute("cCvvErr");
-        %>
-        <div>
-            <h1><a href="main.jsp">IoTBay</a></h1>
-            <a href="LogoutServlet">logout</a>
-            <a href="main.jsp">main</a>
-            <a href="EditServlet">account</a>
-            <a href="AuditServlet">access log</a>
-            <a href="PaymentHistoryServlet">payment history</a>
+        %>     
+        
+    <!--Navigation Menu-->   
+  
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="main.jsp">
+        <!--<img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
+        <div class="ms-3"> IoTBay </div>
+        </a>
+        <form class="form-inline">
+          <input class="form-control" type="search" placeholder="Search for items" aria-label="Search">
+        </form>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="me-auto"></div>
+                <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="main.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="EditServlet">Account</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="AuditServlet">Access Log</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="PaymentHistoryServlet">Payment History</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="LogoutServlet">Logout</a>
+                </li>
+              </ul>
         </div>
-        <br>
-        <div>
+    </nav>
+        
+    <!--Main-->
+        
+        <div class="ms-5 mt-3">
             <p>Your current account details are:</p>
             <form action="UpdateServlet" method="post">
                 <input type="hidden" name="ID" value="${user.ID}">
@@ -59,7 +91,7 @@
             <p><%= updated != null ? updated : ""%></p>
         </div>
         <br>
-        <div>
+        <div class="ms-5 mt-3">
             <p>Your current saved payment details are:</p>
             <form action=PaymentServlet method="post">
                 <input type="hidden" name="ID" value="${user.ID}">
@@ -105,9 +137,12 @@
             <p><%= c_updated != null ? c_updated : ""%></p>
         </div>
         <br>
-        <div>
+        <div class="ms-5 mt-3">
             <p>Your current saved shipment details are:</p>
         </div>
+ 
+        <!--Footer-->
+        <!-- Popper.js, then Bootstrap JS -->
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
         <script src="js/bootstrap.js"></script>
     </body>
