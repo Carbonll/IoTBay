@@ -6,5 +6,6 @@
 - [x] Delete payment details
 - [x] Update payment history db with fk orderid when order db done
 - [x] Add query for date/row generated in PaymentHistory db when order submitted 
+- [x] Search payment history 
 
 
