@@ -6,6 +6,24 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
     version="3.1">
     
+    <!-- Using this in the CRUD operations systems, I'm just going of something I found online, if there is a better way to do it I'd be happy to change it. Just gonna implament it to test it 
+        Looks similar to DB.java but not sure how to use that
+    -->
+    <context-param>
+        <param-name>jdbcURL</param-name>
+        <param-value>jdbc:derby://localhost:1527/</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>jdbcUsername</param-name>
+        <param-value>iotuser</param-value>
+    </context-param>
+ 
+    <context-param>
+        <param-name>jdbcPassword</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    
     <!-- insert servlet stuff here -->
     <servlet>
         <servlet-name>ConnServlet</servlet-name>
@@ -39,6 +57,10 @@
         <servlet-name>DeleteAccServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeleteAccServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crudServlet</servlet-name>
+        <servlet-class>uts.isd.controller.crudServlet</servlet-class>
+    </servlet>
     
     <!-- insert servlet mapping stuff here -->
     <servlet-mapping>
@@ -61,7 +83,7 @@
         <servlet-name>EditServlet</servlet-name>
         <url-pattern>/EditServlet</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UpdateServlet</servlet-name>
         <url-pattern>/UpdateServlet</url-pattern>
     </servlet-mapping>
@@ -73,6 +95,16 @@
         <servlet-name>DeleteAccServlet</servlet-name>
         <url-pattern>/DeleteAccServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crudServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <!-- For my weird crud operation implamentation -->
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/Error.jsp</location>
+    </error-page>
     
     <!-- yo whats up -->
     <session-config>
