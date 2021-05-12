@@ -28,7 +28,7 @@ CREATE TABLE "USER" (
 CREATE TABLE "ROLE" (
     ID INTEGER NOT NULL,
     ROLE_NAME VARCHAR(255) NOT NULL,
-    PRIMARY KEY(ID)
+    PRIMARY KEY(ID) -- ID be the primary key or a foreign key ported from table "user" ?
 );
 
 CREATE TABLE AUDITS (
@@ -66,7 +66,7 @@ CREATE TABLE "SHIPMENT" (
 -- FOREIGN KEY DELCARATIONS BELOW
 -- note: execute one semicolon line at a time
 
-ALTER TABLE "USER" 
+ALTER TABLE "USER" --?not sure what this is used for
     ADD ROLE_ID INTEGER;
     
     ADD FOREIGN KEY (ROLE_ID) REFERENCES ROLE(ID);
