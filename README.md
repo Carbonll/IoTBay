@@ -5,6 +5,6 @@
 - [x] Payment history list working
 - [x] Delete payment details
 - [x] Update payment history db with fk orderid when order db done
-- [ ] Update date/row generated when order submitted <PaymentHistoryServlet.java>
+- [x] Add query for date/row generated in PaymentHistory db when order submitted 
 
 
