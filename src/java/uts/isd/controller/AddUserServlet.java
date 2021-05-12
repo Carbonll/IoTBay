@@ -64,7 +64,7 @@ public class AddUserServlet extends HttpServlet {
                         Date date = Calendar.getInstance().getTime();
                         manager.addAudit(user.getID(), "User Created", date);
                         session.setAttribute("user", user);
-                        request.getRequestDispatcher("SysAdminUserManager.jsp").include(request, response);
+                        request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
                     } else { //user has attempted to input staff code
                         if (roleID == 2) { //if roleID = 2, register as staff
                             manager.addUser(name, email, phone, password, 2);
@@ -72,7 +72,7 @@ public class AddUserServlet extends HttpServlet {
                             Date date = Calendar.getInstance().getTime();
                             manager.addAudit(user.getID(), "User Created", date);
                             session.setAttribute("user", user);
-                            request.getRequestDispatcher("SysAdminUserManager.jsp").include(request, response);
+                            request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
                         } else {
                             if (roleID == 1) { //if roleID = 1, register as system admin
                                 manager.addUser(name, email, phone, password, 1);
@@ -80,20 +80,20 @@ public class AddUserServlet extends HttpServlet {
                                 Date date = Calendar.getInstance().getTime();
                                 manager.addAudit(user.getID(), "User Created", date);
                                 session.setAttribute("user", user);
-                                request.getRequestDispatcher("SysAdminUserManager.jsp").include(request, response);
+                                request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
                             } else {
                                 roleErr = "Role does not exist";
-                                request.getRequestDispatcher("SysAdminUserManager.jsp").include(request, response);
+                                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             }
                         }
                     }
                 } else {
                     session.setAttribute("existErr", "Email is already in use");
-                    request.getRequestDispatcher("SysAdminUserManager.jsp").include(request, response);
+                    request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
 
                 }
             } catch (SQLException | NullPointerException ex) {
-                System.out.println(ex.getMessage() == null ? "User doesn't exist" : "Welcome!");
+                System.out.println(ex.getMessage() == null ? "User doesn't exist" : "User Created!");
             }
             validator.clear(session);
         }
