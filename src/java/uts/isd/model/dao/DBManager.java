@@ -89,7 +89,33 @@ public class DBManager {
         }
         return null;
     }
+    
+    public User findUserByName(String name) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE NAME = '" + name + "'";
+        ResultSet rs = st.executeQuery(fetch);
 
+        while (rs.next()) {
+            String userName = rs.getString(3);
+            if (userName.equals(name)) {
+                return new User(rs);
+            }
+        }
+        return null;
+    }
+    
+        public User findUserByPhone(String phone) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.\"USER\" WHERE PHONE = '" + phone + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String userPhone = rs.getString(3);
+            if (userPhone.equals(phone)) {
+                return new User(rs);
+            }
+        }
+        return null;
+    }
+    
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.\"USER\"";
         ResultSet rs = st.executeQuery(fetch);
