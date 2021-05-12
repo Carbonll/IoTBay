@@ -127,22 +127,21 @@ public class UserDAO {
         return rowUpdated;     
     }
      
-    public User getUser(String name, String email) throws SQLException {
+    public User getUser(int ID) throws SQLException {
         User user = null;
-        String sql = "SELECT * FROM user WHERE name = ?";
-        sql += " AND email = ?";
+        String sql = "SELECT * FROM user WHERE ID = ?"; //needs to be swapped to search using name and phone
          
         connect();
          
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, user.getID()); // use of id needs to be changed, id is not used in db but ID is double check things first before making changes
+        statement.setInt(1, ID); // use of id needs to be changed, id is not used in db but ID is double check things first before making changes
          
         ResultSet resultSet = statement.executeQuery();
          
         if (resultSet.next()) {
-            int ID = resultSet.getInt("ID");
-            name = resultSet.getString("name");
-            email = resultSet.getString("email");
+            ID = resultSet.getInt("ID");
+            String name = resultSet.getString("name");
+            String email = resultSet.getString("email");
             String phone = resultSet.getString("phone");
             String password = resultSet.getString("password");
             int roleID = resultSet.getInt("role_ID");
