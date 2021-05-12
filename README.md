@@ -14,4 +14,4 @@ ALL TASKS DONE
 
 > When order feature done:
 >  * Add order_id and order_date to payment history db using ```addPaymentHistory(int userID, int orderID, Date date)``` query in DBManager. 
->  * Add/Update order (payment_date and payment_amount) to payment db once order submitted as well.
+>  * Add/Update order (payment_date and payment_amount) to payment db once order submitted as well using ```updatePaymentAmount(int ID, String paymentAmount)``` and ```updatePaymentDate(int ID, String paymentDate)``` query in DBManager.
