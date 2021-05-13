@@ -1,11 +1,11 @@
 <%-- 
-    Document   : SysAdminRead
+    Document   : SysAdminUserManage
     Created on : 12/05/2021, 8:40:23 PM
     Author     : jesse h
 --%>
 
+<%@page import="uts.isd.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -30,10 +30,8 @@
             <%    if (user.getRoleID() == 1) { %>
             
             <div>
-            <a href="SysAdminC.jsp">Create a User</a>
+            <a href="SysAdminUserAdd.jsp">Create a User</a>
             </div>
-            <a href="<%=request.getContextPath()%>/new" class="btn btn-success">Add
-     New User</a>
                     </div>
                     <br>
                     <table>
@@ -50,7 +48,7 @@
                         </thead>
                         <tbody>
                             <!--   for (Todo todo: todos) {  -->
-                            <c:forEach var="user" items="${listUser}">
+                            <c:forEach var="user" items="${listUser}"> <%-- Needs work --%>
 
                                 <tr>
                                     <td>
