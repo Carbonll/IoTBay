@@ -3,6 +3,7 @@
     Created on : 17/03/2021, 12:22:28 PM
     Author     : melvi
 --%>
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
 <%@page import="uts.isd.controller.*"%>
@@ -43,10 +44,10 @@
                 </thead>
                 <tbody>
                     <% for (Product row : products){
-                    
+                    String addItem = "/AddToCartServlet?" + row.getID() + row.getName()
+                    + row.getCategory() + row.getPrice() + row.getStock();
                     %>
-                    
-                <form action="AddToCartServlet" method="post">
+                
                     <tr>
                         <td style="text-align: center"><%= row.getID()%></td>
                         <td style="text-align: center"><%= row.getName()%></td>
@@ -54,8 +55,7 @@
                         <td style="text-align: center"><%= row.getPrice()%></td>
                         <td style="text-align: center"><%= row.getStock()%></td>
                         <td style="text-align: center">
-                       <input type="submit" value="Add to Order"></a></td>
-                </form>
+                        <td><a href=""<%=addItem%>">Add to Cart</a></td>
                     </tr>
                     <% }%>
                 </tbody>

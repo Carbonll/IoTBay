@@ -14,28 +14,23 @@ import java.util.*;
  * @author Anthony
  */
 public class OrderCart implements java.io.Serializable {
-    private ArrayList<Product> items;
+    protected Vector items;
     
     public OrderCart(){
-        items = new ArrayList<Product>();
+        items = new Vector();
     }
     
-    public void addProduct(Product newItem)
-    {
-    items.add(newItem);
+    public Vector getProducts(){
+        return (Vector) items.clone();
     }
     
-    public void removeProduct(Product newItem)
-    {
-    items.remove(newItem);
+    public void addProduct(Product newProduct){
+        items.addElement(newProduct);
     }
     
-    public int getStock(){
-        return items.size();
+    public void removeProduct(int productIndex){
+        items.removeElementAt(productIndex);
     }
-    
-    public ArrayList<Product> getIt(){
-        return items;
-    }
+  
     
 }
