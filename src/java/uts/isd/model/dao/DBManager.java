@@ -144,4 +144,15 @@ public class DBManager {
     public void deleteAudit(int ID) throws SQLException {
         st.executeUpdate("DELETE FROM IOTUSER.AUDITS WHERE USER_ID = " + ID);
     }
+    
+    public ArrayList<Product> fetchProducts() throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PRODUCT";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Product> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Product(rs));
+        }
+        return result;
+    }    
 }

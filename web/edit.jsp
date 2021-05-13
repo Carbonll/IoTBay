@@ -19,11 +19,10 @@
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
-            <a href="LogoutServlet">Logout</a>
-            <a href="main.jsp">Main</a>
-            <a href="OrderServlet">Order log</a>
-            <a href="EditServlet">Account</a>
-            <a href="AuditServlet">Access log</a>
+            <a href="LogoutServlet">logout</a>
+            <a href="main.jsp">main</a>
+            <a href="EditServlet">account</a>
+            <a href="AuditServlet">access log</a>
         </div>
         <br>
         <div>
@@ -45,8 +44,7 @@
                     </tr>
                 </table>
                 <p>Please edit the fields above to update any information.</p>
-                <p><input type="submit" value="Update"></p>
-                <p><a href="deleteAcc.jsp">Delete account</a></p>
+                <p><input type="submit" value="update"> <a href="deleteAcc.jsp">Delete account</a></p>
             </form>
             <p><%= updated != null ? updated : ""%></p>
         </div>

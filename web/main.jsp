@@ -3,7 +3,9 @@
     Created on : 17/03/2021, 12:22:28 PM
     Author     : melvi
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
+<%@page import="uts.isd.controller.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,11 +19,11 @@
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
-            <a href="LogoutServlet">Logout</a>
-            <a href="main.jsp">Main</a>
-            <a href="OrderServlet">Order log</a>
-            <a href="EditServlet">Account</a>
-            <a href="AuditServlet">Access log</a>
+            <a href="LogoutServlet">logout</a>
+            <a href="main.jsp">main</a>
+            <a href="EditServlet">account</a>
+            <a href="AuditServlet">access log</a>
+            <a href="BrowseServlet">browse</a>
         </div>
         <br>
         <div>
