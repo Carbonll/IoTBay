@@ -40,6 +40,7 @@ public class AddUserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         int roleID = Integer.parseInt(request.getParameter("roleID"));
         String roleErr = null;
+        session.setAttribute("created", "");
 
         DBManager manager = (DBManager) session.getAttribute("manager");
 
