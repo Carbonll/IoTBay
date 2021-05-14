@@ -18,7 +18,7 @@
         String nameErr = (String) session.getAttribute("nameErr");
         String phoneErr = (String) session.getAttribute("phoneErr");
         String roleErr = (String) session.getAttribute("roleErr");
-        String created = (String)session.setAttribute("created");
+        String created = (String)session.getAttribute("created");
     %>
     <body>
         <%
