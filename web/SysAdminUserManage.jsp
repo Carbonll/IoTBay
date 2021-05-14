@@ -34,7 +34,7 @@
             </div>
                     </div>
                     <br>
-                    <table>
+                    <!--<table>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -47,12 +47,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!--   for (Todo todo: todos) {  -->
+                            <!--   for (Todo todo: todos) {  
                             <c:forEach var="user" items="${listUser}"> <%-- Needs work --%>
 
                                 <tr>
                                     <td>
-                                        <c:out value="${user.ID}" />
+                                        value="${user.ID}" />
                                     </td>
                                     <td>
                                         <c:out value="${user.name}" />
@@ -72,8 +72,9 @@
                                     <td><a href="edit?id=<c:out value='${user.ID}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                                 </tr>
                             </c:forEach>
-                            <!-- } -->
+                            <!-- } 
                         </tbody>
+                        -->
         </div>
       
          <%}else{%>
