@@ -64,26 +64,23 @@ public class AddUserServlet extends HttpServlet {
                         User user = manager.findUserByEmail(email);
                         Date date = Calendar.getInstance().getTime();
                         manager.addAudit(user.getID(), "User Created", date);
-                        session.setAttribute("user", user);
-                        request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
+                        request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                     } else { //user has attempted to input staff code
                         if (roleID == 2) { //if roleID = 2, register as staff
                             manager.addUser(name, email, phone, password, 2);
                             User user = manager.findUserByEmail(email);
                             Date date = Calendar.getInstance().getTime();
                             manager.addAudit(user.getID(), "User Created", date);
-                            session.setAttribute("user", user);
-                            request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
+                            request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                         } else {
                             if (roleID == 1) { //if roleID = 1, register as system admin
                                 manager.addUser(name, email, phone, password, 1);
                                 User user = manager.findUserByEmail(email);
                                 Date date = Calendar.getInstance().getTime();
                                 manager.addAudit(user.getID(), "User Created", date);
-                                session.setAttribute("user", user);
-                                request.getRequestDispatcher("SysAdminUserManage.jsp").include(request, response);
+                                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             } else {
-                                roleErr = "Role does not exist";
+                                session.setAttribute("roleErr", "Invalid Role Value");
                                 request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             }
                         }
