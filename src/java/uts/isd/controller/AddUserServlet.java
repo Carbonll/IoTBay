@@ -76,7 +76,7 @@ public class AddUserServlet extends HttpServlet {
                         } else {
                             if (roleID == 1) { //if roleID = 1, register as system admin
                                 manager.addUser(name, email, phone, password, 1);
-                                User user = manager.findUserByEmail(email);
+                                User user = manager.findUserByEmail(email); 
                                 Date date = Calendar.getInstance().getTime();
                                 manager.addAudit(user.getID(), "UserCreated", date);
                                 request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
