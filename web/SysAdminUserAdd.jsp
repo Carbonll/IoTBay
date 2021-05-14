@@ -41,7 +41,7 @@
             </div>
             
             <div>
-                <form action=AddUserServlet method="post">
+                <form action=RegisterServlet method="post">
                 <table>
                     <tr>
                         <td>Name</td>
@@ -61,7 +61,7 @@
                     </tr>
                     <tr>
                         <td>Role ID</td>
-                        <td><input type="int" placeholder="<%= roleErr != null ? roleErr : "Enter Role ID"%>" name="code" ></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
+                        <td><input type="int" placeholder="<%= roleErr != null ? roleErr : "Enter Role ID"%>" name="roleID" required ></td> <%-- Should this be done by a system admin in a seperate page who could edit to give staff privledges? --%>
                     </tr>
                 </table>
                 <input type="submit" value="Create User">
