@@ -41,7 +41,7 @@
             </div>
             
             <div>
-                <form action=RegisterServlet method="post">
+                <form action=AddUserServlet method="post">
                 <table>
                     <tr>
                         <td>Name</td>
