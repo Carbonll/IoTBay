@@ -40,28 +40,28 @@ public class AddUserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         int roleID = Integer.parseInt(request.getParameter("roleID"));
         String roleErr = null;
-        session.setAttribute("created", "");
+        session.setAttribute("created", "");//clear errors
 
         DBManager manager = (DBManager) session.getAttribute("manager");
 
         if (!validator.validateName(name)) {
-            session.setAttribute("nameErr", "Invalid Name Format");
+            session.setAttribute("created", "Invalid Name Format");
             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
         } else if (!validator.validateEmail(email)) {
-            session.setAttribute("emailErr", "Invalid Email Format");
+            session.setAttribute("created", "Invalid Email Format");
             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
         } else if (!validator.validatePhone(phone)) {
-            session.setAttribute("phoneErr", "Invalid Phone Format");
+            session.setAttribute("created", "Invalid Phone Format");
             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
         } else if (!validator.validatePassword(password)) {
-            session.setAttribute("passwordErr", "Invalid Password Format");
+            session.setAttribute("created", "Invalid Password Format");
             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
         } else {
             try {
                 User check = manager.findUserByEmail(email);
                 if (check == null) { //check if the inputted email already exists
                     if (roleID == 3) { //if roleID = 3, register as customer
-                        
+                        session.setAttribute("created", "User successfully created!");
                         manager.addUser(name, email, phone, password, 3);
                         User user = manager.findUserByEmail(email);
                         Date date = Calendar.getInstance().getTime();
@@ -69,6 +69,7 @@ public class AddUserServlet extends HttpServlet {
                         request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                     } else { //user has attempted to input staff code
                         if (roleID == 2) { //if roleID = 2, register as staff
+                            session.setAttribute("created", "User successfully created!");
                             manager.addUser(name, email, phone, password, 2);
                             User user = manager.findUserByEmail(email);
                             Date date = Calendar.getInstance().getTime();
@@ -76,19 +77,20 @@ public class AddUserServlet extends HttpServlet {
                             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                         } else {
                             if (roleID == 1) { //if roleID = 1, register as system admin
+                                session.setAttribute("created", "User successfully created!");
                                 manager.addUser(name, email, phone, password, 1);
                                 User user = manager.findUserByEmail(email); 
                                 Date date = Calendar.getInstance().getTime();
                                 manager.addAudit(user.getID(), "UserCreated", date);
                                 request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             } else {
-                                session.setAttribute("roleErr", "Invalid Role Value");
+                                session.setAttribute("created", "Invalid Role Value");
                                 request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             }
                         }
                     }
                 } else {
-                    session.setAttribute("existErr", "Email is already in use");
+                    session.setAttribute("created", "Email is already in use");
                     request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
 
                 }
