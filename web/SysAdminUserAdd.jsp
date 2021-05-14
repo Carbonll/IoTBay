@@ -18,6 +18,7 @@
         String nameErr = (String) session.getAttribute("nameErr");
         String phoneErr = (String) session.getAttribute("phoneErr");
         String roleErr = (String) session.getAttribute("roleErr");
+        String created = (String)session.setAttribute("created");
     %>
     <body>
         <%
@@ -66,7 +67,7 @@
                 </table>
                 <input type="submit" value="Create User">
             </form>
-            <p><%= existErr != null ? existErr : "User Created!"%></p>
+            <p><%= created != null ? created : ""%></p>
         </div>
 
         </div>
