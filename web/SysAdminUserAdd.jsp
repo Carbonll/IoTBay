@@ -66,7 +66,7 @@
                 </table>
                 <input type="submit" value="Create User">
             </form>
-            <p><%= existErr != null ? existErr : ""%></p>
+            <p><%= existErr != null ? existErr : "User Created!"%></p>
         </div>
 
         </div>
