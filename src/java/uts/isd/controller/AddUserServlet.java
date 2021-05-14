@@ -92,7 +92,7 @@ public class AddUserServlet extends HttpServlet {
 
                 }
             } catch (SQLException | NullPointerException ex) {
-                System.out.println(ex.getMessage() == null ? "User doesn't exist" : "User Created!");
+                System.out.println(ex.getMessage() == null ? "User already exists" : "User Created!");
             }
             validator.clear(session);
         }
