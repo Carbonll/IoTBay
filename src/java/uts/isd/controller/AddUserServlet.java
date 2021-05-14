@@ -60,24 +60,25 @@ public class AddUserServlet extends HttpServlet {
                 User check = manager.findUserByEmail(email);
                 if (check == null) { //check if the inputted email already exists
                     if (roleID == 3) { //if roleID = 3, register as customer
+                        
                         manager.addUser(name, email, phone, password, 3);
                         User user = manager.findUserByEmail(email);
                         Date date = Calendar.getInstance().getTime();
-                        manager.addAudit(user.getID(), "User Created", date);
+                        manager.addAudit(user.getID(), "UserCreated", date);
                         request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                     } else { //user has attempted to input staff code
                         if (roleID == 2) { //if roleID = 2, register as staff
                             manager.addUser(name, email, phone, password, 2);
                             User user = manager.findUserByEmail(email);
                             Date date = Calendar.getInstance().getTime();
-                            manager.addAudit(user.getID(), "User Created", date);
+                            manager.addAudit(user.getID(), "UserCreated", date);
                             request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                         } else {
                             if (roleID == 1) { //if roleID = 1, register as system admin
                                 manager.addUser(name, email, phone, password, 1);
                                 User user = manager.findUserByEmail(email);
                                 Date date = Calendar.getInstance().getTime();
-                                manager.addAudit(user.getID(), "User Created", date);
+                                manager.addAudit(user.getID(), "UserCreated", date);
                                 request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
                             } else {
                                 session.setAttribute("roleErr", "Invalid Role Value");
