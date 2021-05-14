@@ -42,64 +42,6 @@ public class RegisterServlet extends HttpServlet {
 
         DBManager manager = (DBManager) session.getAttribute("manager");
         //added section by jesse //For SysAdmin Creating accounts
-        User cUser = session.getAttribute("user"); //checks sessions attributes if roleID = 1 to allow only sys admin access, if session has nothing it will go to the register section
-        if (cUser.getRoleID() == 1) { //Used for the create user for system admin, checks if current user (cUser)roleID = 1 (system admin)
-            if (!validator.validateName(name)) {
-                session.setAttribute("nameErr", "Invalid Name Format");
-                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-            } else if (!validator.validateEmail(email)) {
-                session.setAttribute("emailErr", "Invalid Email Format");
-                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-            } else if (!validator.validatePhone(phone)) {
-                session.setAttribute("phoneErr", "Invalid Phone Format");
-                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-            } else if (!validator.validatePassword(password)) {
-                session.setAttribute("passwordErr", "Invalid Password Format");
-                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-            } else {
-                try {
-                    User check = manager.findUserByEmail(email);
-                    if (check == null) { //check if the inputted email already exists
-                        if (roleID == 3) { //checks sys admin input for roleID //Customer ACC 
-                            manager.addUser(name, email, phone, password, 3);
-                            User user = manager.findUserByEmail(email);
-                            Date date = Calendar.getInstance().getTime();
-                            manager.addAudit(user.getID(), "accCreated", date);
-                            session.setAttribute("user", user);
-                            request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-                        }else { //user has attempted to input staff code
-                            if (roleID == 2) { //checks sys admin input for roleID //Staff ACC 
-                                manager.addUser(name, email, phone, password, 2);
-                                User user = manager.findUserByEmail(email);
-                                Date date = Calendar.getInstance().getTime();
-                                manager.addAudit(user.getID(), "accCreated", date);
-                                session.setAttribute("user", user);
-                                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-                            } else {
-                                if (roleID == 1) { //checks sys admin input for roleID //System Admin ACC 
-                                manager.addUser(name, email, phone, password, 1);
-                                User user = manager.findUserByEmail(email);
-                                Date date = Calendar.getInstance().getTime();
-                                manager.addAudit(user.getID(), "accCreated", date);
-                                session.setAttribute("user", user);
-                                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-                                } else {
-                                session.setAttribute("roleErr", "Incorrect Role ID");
-                                request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-                                }
-                            }
-                        }
-                    } else {
-                        session.setAttribute("existErr", "Email is already in use");
-                        request.getRequestDispatcher("SysAdminUserAdd.jsp").include(request, response);
-                    }
-                } catch (SQLException | NullPointerException ex) {
-                    System.out.println(ex.getMessage() == null ? "User doesn't exist" : "User Created!");
-                }
-            }
-            //^ added section by jesse
-
-        } else {
             if (!validator.validateName(name)) {
                 session.setAttribute("nameErr", "Invalid Name Format");
                 request.getRequestDispatcher("register.jsp").include(request, response);
@@ -147,4 +89,4 @@ public class RegisterServlet extends HttpServlet {
             validator.clear(session);
         }
     }
-}
+
