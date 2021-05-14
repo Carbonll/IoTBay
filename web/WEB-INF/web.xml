@@ -34,6 +34,10 @@
         <servlet-name>DeleteAccServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeleteAccServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddUserServlet</servlet-class>
+    </servlet>
     <!-- insert servlet mapping stuff here -->
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -66,6 +70,10 @@
     <servlet-mapping>
         <servlet-name>DeleteAccServlet</servlet-name>
         <url-pattern>/DeleteAccServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/AddUserServlet</url-pattern>
     </servlet-mapping>
     <!-- yo whats up -->
     <session-config>
