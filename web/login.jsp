@@ -23,6 +23,7 @@
             <h1><a href="index.jsp">IoTBay</a></h1>
             <a href="login.jsp">login</a>
             <a href="register.jsp">register</a>
+            <a href="BrowseServlet">browse</a>
         </div>
         <br>
         <div>

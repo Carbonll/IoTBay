@@ -22,7 +22,9 @@ public class Validator implements Serializable {
     private String phonePattern = "([0]{1}[4]{1}[0-9]{8})*";
     private String codePattern = "1234*"; //staff registration code
     private String datePattern = "^\\d{2}-\\d{2}-\\d{4}$"; //doesn't really check for valid months/days, but it'll work
-
+    private String pricePattern = "^-?\\d*\\.\\d{2}$";
+    private String stockPattern = "^\\d+$";
+        
     public Validator() {}
 
     public boolean validate(String pattern, String input) {
@@ -30,7 +32,7 @@ public class Validator implements Serializable {
         Matcher match = regEx.matcher(input);
         return match.matches();
     }
-
+    
     public boolean checkEmpty(String email, String password) {
         return email.isEmpty() || password.isEmpty();
     }
@@ -59,6 +61,14 @@ public class Validator implements Serializable {
         return validate(datePattern, date);
     }
     
+    public boolean validatePrice(String price) {
+        return validate(pricePattern, price);
+    }
+
+    public boolean validateStock(String stock) {
+        return validate(stockPattern, stock);
+    }    
+    
     public void clear(HttpSession session) {
         session.setAttribute("emailErr", "Enter Email");
         session.setAttribute("passErr", "Enter Password");
@@ -68,5 +78,19 @@ public class Validator implements Serializable {
     }
     public void clearCode(HttpSession session) {
         session.setAttribute("codeErr", "Enter Code");
+    }
+    
+    public void clearProductForm(HttpSession session) {
+        session.setAttribute("priceErr", "");
+        session.setAttribute("stockErr", "");
+    }
+    
+    public boolean validateNumber(String number) {
+        for (int i = 0; i < number.length(); i++) {
+            if(!"0123456789".contains(String.valueOf(number.charAt(i)))) {
+                return true;                
+            }        
+        }
+        return false;
     }
 }

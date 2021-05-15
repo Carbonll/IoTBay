@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package uts.isd.controller;
 
 import java.io.IOException;
@@ -20,32 +25,31 @@ import uts.isd.model.dao.DBManager;
 
 /**
  *
- * @author Peter
+ * @author putra
  */
-public class BrowseServlet extends HttpServlet {
+public class SearchProductServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         ArrayList<Product> products = new ArrayList();
-        DBManager manager = (DBManager) session.getAttribute("manager");
-    
+        DBManager manager = (DBManager) session.getAttribute("manager");        
+        String productSearch = request.getParameter("productSearch");
+
         try {
-            if (user != null) { //Check for anonymous user                       
-                products = manager.fetchProducts();
+            if (user != null) { //Check for anonymous user
+                products = manager.fetchProductsByNameAndCategory(productSearch);
                 session.setAttribute("products", products);
                 request.getRequestDispatcher("browse.jsp").include(request, response);
             }
             else {
-                products = manager.fetchProducts();
+                products = manager.fetchProductsByNameAndCategory(productSearch);
                 session.setAttribute("products", products);
-                request.getRequestDispatcher("browseAnon.jsp").include(request, response);            
+                request.getRequestDispatcher("browseAnon.jsp").include(request, response);                           
             }
-            
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage() == null ? "Unable to obtain products" : "products acquired");
+            System.out.println(ex.getMessage() == null ? "Unable to search product" : "Product found");
         }
     }
 }

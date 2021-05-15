@@ -154,5 +154,78 @@ public class DBManager {
             result.add(new Product(rs));
         }
         return result;
-    }    
+    }
+
+    public void addProduct(String name, String category, double price, int stock) throws SQLException {
+    st.executeUpdate("INSERT INTO IOTUSER.PRODUCT(PRODUCT_NAME, PRODUCT_CATEGORY, PRODUCT_PRICE, PRODUCT_STOCK)" + "VALUES ('" + name + "', '" + category + "', " + price + ", " + stock + ")");
+    }
+    
+    public ArrayList<Product> fetchProductsByNameAndCategory(String productSearch) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PRODUCT WHERE PRODUCT_NAME = '" + productSearch + "' OR PRODUCT_CATEGORY = '" + productSearch +"'";
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Product> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Product(rs));
+        }
+        return result;
+    }
+
+    public ArrayList<Product> fetchProductByID(int productID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PRODUCT WHERE ID = " + productID;
+        ResultSet rs = st.executeQuery(fetch);
+        ArrayList<Product> result = new ArrayList();
+        
+        while (rs.next()) {
+            result.add(new Product(rs));
+        }
+        return result;
+    }
+    
+    public void updateProductName(int productID, String name) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.PRODUCT SET PRODUCT_NAME = '" + name + "' WHERE ID = " + productID);
+    }   
+    
+    public void updateProductCategory(int productID, String category) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.PRODUCT SET PRODUCT_CATEGORY = '" + category + "' WHERE ID = " + productID);
+    }   
+
+    public void updateProductPrice(int productID, double price) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.PRODUCT SET PRODUCT_PRICE = " + price + " WHERE ID = " + productID);
+    }   
+
+    public void updateProductStock(int productID, int stock) throws SQLException {
+        st.executeUpdate("UPDATE IOTUSER.PRODUCT SET PRODUCT_STOCK = " + stock + " WHERE ID = " + productID);
+    }
+    
+    public void deleteProduct(int productID) throws SQLException {
+        st.executeUpdate("DELETE FROM IOTUSER.PRODUCT WHERE ID = " + productID);
+    }
+    
+    public Product findProductByName(String prodName) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PRODUCT WHERE PRODUCT_NAME = '" + prodName + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String productName = rs.getString(2);
+            if (productName.equals(prodName)) {
+                return new Product(rs);
+            }
+        }
+        return null;
+    }  
+    
+    public Product findOtherProductByName(String otherName, int currentID) throws SQLException {
+        String fetch = "SELECT * FROM IOTUSER.PRODUCT WHERE ID <> " + currentID + "AND PRODUCT_NAME = '" + otherName + "'";
+        ResultSet rs = st.executeQuery(fetch);
+
+        while (rs.next()) {
+            String otherProdName = rs.getString(2);
+            if (otherProdName.equals(otherName)) {
+                return new Product(rs);
+            }
+        }
+        return null;
+    }  
+        
 }

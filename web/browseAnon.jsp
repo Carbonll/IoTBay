@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Main Page</title>
+        <title>Browse Page</title>
     </head>
     <body>
         <%
@@ -19,15 +19,19 @@
         %>
         <div>
             <h1><a href="index.jsp">IoTBay</a></h1>
-            <a href="register.jsp">register</a>
             <a href="login.jsp">login</a>
+            <a href="register.jsp">register</a>
+            <a href="BrowseServlet">browse</a>
         </div>
         <br>
         <div>
             <h2>Welcome</h2>
         </div>
         <div>
-                    <table>
+        <form action="SearchProductServlet">
+            <p>Search by Name or Category <input type="text" name="productSearch"><input type="submit" value="Search"></p>
+        </form>
+            <table>
                 <colgroup>
                     <col span="3" style="width: 100px">
                 </colgroup>
@@ -42,13 +46,14 @@
                 </thead>
                 <tbody>
                     <% for (Product row : products) {%>
+                    <%String formattedPrice = String.format("%.2f", row.getPrice()); %>
                     <tr>
                         <td style="text-align: center"><%= row.getID()%></td>
                         <td style="text-align: center"><%= row.getName()%></td>
                         <td style="text-align: center"><%= row.getCategory()%></td>
-                        <td style="text-align: center"><%= row.getPrice()%></td>
+                        <td style="text-align: center"><%= formattedPrice %></td>
                         <td style="text-align: center"><%= row.getStock()%></td>
-                        <td style="text-align: center">Add to order</td>
+                        <td><input type="submit" value="Add to order"</td>
                     </tr>
                     <% }%>
                 </tbody>

@@ -38,6 +38,26 @@
         <servlet-name>BrowseServlet</servlet-name>
         <servlet-class>uts.isd.controller.BrowseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductIDServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SearchProductIDServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -74,6 +94,26 @@
     <servlet-mapping>
         <servlet-name>BrowseServlet</servlet-name>
         <url-pattern>/BrowseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/SearchProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductIDServlet</servlet-name>
+        <url-pattern>/SearchProductIDServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

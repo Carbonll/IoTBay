@@ -17,6 +17,18 @@
         <%
             User user = (User) session.getAttribute("user");
         %>
+        <% if (user.getRoleID() == 2) { %>
+        <div>
+            <h1><a href="main.jsp">IoTBay</a></h1>
+            <a href="LogoutServlet">logout</a>
+            <a href="main.jsp">main</a>
+            <a href="EditServlet">account</a>
+            <a href="AuditServlet">access log</a>
+            <a href="BrowseServlet">browse</a>
+            <a href="addProduct.jsp">Add Product</a>
+            <a href="updateProduct.jsp">Update Product</a>
+        </div>
+        <% } else { %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
             <a href="LogoutServlet">logout</a>
@@ -25,6 +37,7 @@
             <a href="AuditServlet">access log</a>
             <a href="BrowseServlet">browse</a>
         </div>
+        <% } %>
         <br>
         <div>
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>

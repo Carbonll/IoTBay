@@ -23,6 +23,9 @@
             <a href="main.jsp">main</a>
             <a href="EditServlet">account</a>
             <a href="AuditServlet">access log</a>
+            <a href="BrowseServlet">browse</a>
+            <a href="addProduct.jsp">Add Product</a>
+            <a href="updateProduct.jsp">Update Product</a>
         </div>
         <br>
         <div>
