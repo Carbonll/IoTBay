@@ -45,11 +45,10 @@
             <h2>Welcome,&nbsp;<%= user.getRoleID() == 2 ? "Staff Member " + user.getName() : user.getRoleID() == 1 ? "System Admin" : user.getName() %></h2>
         </div>
         <div>
-        <form action="SearchProductServlet">
+        <form action="SearchProductServlet" method="get">
             <p>Search by Name or Category <input type="text" name="productSearch"><input type="submit" value="Search"></p>
         </form>
             <% if (user.getRoleID() == 2) { %>
-            <form action=updateProduct.jsp method="post">
                 <table>
                 <colgroup>
                     <col span="3" style="width: 100px">
@@ -105,8 +104,7 @@
                         <td style="text-align: center"><input type="submit" value="Add to order"></td>
                     </tr>
                     <% }%>
-                    <% }%>
-                    
+                    <% }%>                   
                 </tbody>
                 </table>
             </form>

@@ -28,7 +28,7 @@
             <h2>Welcome</h2>
         </div>
         <div>
-        <form action="SearchProductServlet">
+        <form action="SearchProductServlet" method="get">
             <p>Search by Name or Category <input type="text" name="productSearch"><input type="submit" value="Search"></p>
         </form>
             <table>

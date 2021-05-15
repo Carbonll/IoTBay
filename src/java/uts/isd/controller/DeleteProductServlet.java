@@ -25,7 +25,7 @@ import uts.isd.model.dao.DBManager;
 public class DeleteProductServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         ArrayList<Product> products = new ArrayList();
         DBManager manager = (DBManager) session.getAttribute("manager");        

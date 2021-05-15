@@ -34,11 +34,11 @@
             <a href="updateProduct.jsp">Update Product</a>
         </div>
         <h2>Update Product</h2>
-        <form action="SearchProductIDServlet">
+        <form action="SearchProductIDServlet" method="get">
             <p>Search by ProductID <input type="text" name="productIDSearch"><input type="submit" value="Search"></p>
         </form>
             <% if (product != null) { %>
-            <form action ="UpdateProductServlet" method="get">
+            <form action="UpdateProductServlet" method="post">
                 <table>
                     <% for (Product row : product) {%>
                     <%String formattedPrice = String.format("%.2f", row.getPrice()); %>

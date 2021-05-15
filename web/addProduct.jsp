@@ -32,7 +32,7 @@
         <div>
             <h2>Add Product</h2>
         </div>
-            <form action="AddProductServlet" method="get">
+            <form action="AddProductServlet" method="post">
                 <table>
                     <tr><td>Name</td><td><input type="text" name="newName" required></td></tr>
                     <tr><td>Category</td><td><input type="text" name="newCategory" required></td></tr>
