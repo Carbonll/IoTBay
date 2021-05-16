@@ -36,7 +36,6 @@ public class UpdateServlet extends HttpServlet {
         
         DBManager manager = (DBManager) session.getAttribute("manager");
         session.setAttribute("updated", ""); //clear any error messages
-
         if (!validator.validateName(name)) { //validate format for all fields
             session.setAttribute("updated", "Invalid Name Format");
             request.getRequestDispatcher("edit.jsp").include(request, response);
