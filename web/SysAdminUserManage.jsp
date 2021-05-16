@@ -10,6 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.controller.*"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,12 +20,14 @@
     <body>
         <%
         User user = (User) session.getAttribute("user"); //only used in the intial if statement to check for sysadmin
+        DBManager manager = (DBManager) session.getAttribute("manager");
+        ArrayList<User> result = manager.fetchUsers(); //Check if is the right thing or whether it should call something instead
+        request.setAttribute("result", result);
         
-        ArrayList<User> fetchUsers = (ArrayList<User>) session.getAttribute("fetchUsers"); //Check if is the right thing or whether it should call something instead
         String nameErr = (String) session.getAttribute("nameErr");
         String phoneErr = (String) session.getAttribute("phoneErr");
-        DBManager manager = (DBManager) session.getAttribute("manager");
-
+        
+        
         %>
         <div>
             <h1><a href="main.jsp">IoTBay</a></h1>
@@ -69,18 +72,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (User row:fetchUsers) {%> <!-- Test if result is correct object -->
+                    <c:forEach items="${result}" var="user"> <!-- Test if result is correct object -->
                     <tr>
-                        <td style="text-align: center"><%= row.getID()%></td>
-                        <td style="text-align: center"><%= row.getName()%></td>
-                        <td style="text-align: center"><%= row.getEmail()%></td>
-                        <td style="text-align: center"><%= row.getPhone()%></td>
-                        <td style="text-align: center"><%= row.getPassword()%></td>
-                        <td style="text-align: center"><%= row.getRoleID()%></td>
-                        <td style="text-align: center"><a href="EditUserServlet">Edit</a></td>
-                        <td style="text-align: center"><a href="DeleteUserServlet">Delete</a></td>
+                        <td style="text-align: center">${user.getID()}</td>
+                        <td style="text-align: center">${user.getName()}</td>
+                        <td style="text-align: center">${user.getEmail()}</td>
+                        <td style="text-align: center">${user.getPhone()}</td>
+                        <td style="text-align: center">${user.getPassword()}</td>
+                        <td style="text-align: center">${user.getRoleID()}</td>
+                        <td style="text-align: center"><a href="EditUserServlet?ID=${user.getID()}">Edit</a></td>
+                        <td style="text-align: center"><a href="DeleteUserServlet?ID=${user.getID()}">Delete</a></td>
                     </tr>
-                    <% }%>
+                    </c:forEach>
                 </tbody>
             </table>
                 
