@@ -38,6 +38,18 @@
         <servlet-name>AddUserServlet</servlet-name>
         <servlet-class>uts.isd.controller.AddUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserManageServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UserManageServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateUserServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>EditUserServlet</servlet-name>
+        <servlet-class>uts.isd.controller.EditUserServlet</servlet-class>
+    </servlet>
     <!-- insert servlet mapping stuff here -->
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -74,6 +86,18 @@
     <servlet-mapping>
         <servlet-name>AddUserServlet</servlet-name>
         <url-pattern>/AddUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserManageServlet</servlet-name>
+        <url-pattern>/UserManageServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>/UpdateUserServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>EditUserServlet</servlet-name>
+        <url-pattern>/EditUserServlet</url-pattern>
     </servlet-mapping>
     <!-- yo whats up -->
     <session-config>
