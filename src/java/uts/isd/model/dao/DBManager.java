@@ -119,7 +119,7 @@ public class DBManager {
     public ArrayList<User> fetchUsers() throws SQLException {
         String fetch = "SELECT * FROM IOTUSER.\"USER\"";
         ResultSet rs = st.executeQuery(fetch);
-        ArrayList<User> result = new ArrayList();
+        ArrayList<User> result = new ArrayList<User>();
 
         while (rs.next()) {
             result.add(new User(rs));
