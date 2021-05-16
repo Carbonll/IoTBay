@@ -19,7 +19,7 @@ import uts.isd.model.dao.DBManager;
 
 /**
  *
- * @author putra
+ * @author jesse
  */
 public class DeleteAccServlet extends HttpServlet {
 
@@ -28,15 +28,30 @@ public class DeleteAccServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         DBManager manager = (DBManager) session.getAttribute("manager");
+        String selectedUserID = request.getParameter("ID");//
+        int ID = Integer.parseInt(selectedUserID);//
 
-        try {
-            System.out.println(user.getID());
-            manager.deleteAudit(user.getID());
-            manager.deleteUser(user.getID());
-            session.invalidate();
-            request.getRequestDispatcher("accDeleted.jsp").include(request, response);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage() == null ? "Unable to delete account" : "Account deleted");
+        if (selectedUserID == null) { //variable needs to be properly implemented
+
+            try {
+                System.out.println(user.getID());
+                manager.deleteAudit(user.getID());
+                manager.deleteUser(user.getID());
+                session.invalidate();
+                request.getRequestDispatcher("accDeleted.jsp").include(request, response);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage() == null ? "Unable to delete account" : "Account deleted");
+            }
+
+        } else {
+            try { //TBC
+                System.out.println(ID);
+                manager.deleteAudit(ID);
+                manager.deleteUser(ID);
+                response.sendRedirect("SysAdminUserManage.jsp");
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage() == null ? "Unable to delete account" : "Account deleted");
+            }
         }
     }
 }
